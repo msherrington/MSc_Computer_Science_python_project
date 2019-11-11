@@ -36,3 +36,26 @@ def test_shift_cities():
     assert shift_cities(road_map) == roadmap[-1] + roadmap[:-2]
 
 
+def test_read_cities():
+    '''add stub'''
+    pass
+
+
+def test_print_cities():
+    '''add stub'''
+    pass
+
+
+def test_find_best_cycle():
+    '''add stub'''
+    pass
+
+
+def test_print_map():
+    '''add stub'''
+    pass
+
+
+def test_main():
+    '''add stub'''
+    pass
