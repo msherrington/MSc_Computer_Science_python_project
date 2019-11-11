@@ -12,36 +12,36 @@ def road_map():
 
 
 def test_compute_total_distance():
-    assert compute_total_distance(road_map) == pytest.approx(9.386+18.496+10.646, 0.01)
+    assert compute_total_distance() == pytest.approx(9.386+18.496+10.646, 0.01)
 
     '''add your further tests'''
 
 
-def test_swap_cities():
+def test_swap_cities(road_map):
     index1 = 0
     index2 = 1
-    swapped = road_map[:]
+    swapped = road_map
     swapped[index1], swapped[index2] = swapped[index2], swapped[index1]
     assert swap_cities(road_map, index1, index2) == swapped
 
 
-def test_shift_cities():
+def test_shift_cities(road_map):
     assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
-def test_read_cities():
+def test_read_cities(road_map):
     assert read_cities(road_map) == road_map
 
 
-def test_print_cities():
+def test_print_cities(road_map):
     assert print_cities(road_map) == road_map
 
 
-def test_find_best_cycle():
+def test_find_best_cycle(road_map):
     assert find_best_cycle(road_map) == road_map
 
 
-def test_print_map():
+def test_print_map(road_map):
     assert print_map(road_map) == road_map
 
 
