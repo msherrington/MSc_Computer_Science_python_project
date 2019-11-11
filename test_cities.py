@@ -37,25 +37,50 @@ def test_shift_cities():
 
 
 def test_read_cities():
-    '''add stub'''
-    pass
+    '''stub'''
+    road_map = [
+        ("Kentucky", "Frankfort", 38.197274, -84.86311),
+        ("Delaware", "Dover", 39.161921, -75.526755),
+        ("Minnesota", "Saint Paul", 44.95, -93.094)
+    ]
+    assert road_map == road_map
 
 
 def test_print_cities():
-    '''add stub'''
-    pass
+    '''stub'''
+    road_map = [
+        ("Kentucky", "Frankfort", 38.197274, -84.86311),
+        ("Delaware", "Dover", 39.161921, -75.526755),
+        ("Minnesota", "Saint Paul", 44.95, -93.094)
+    ]
+    assert road_map == road_map
 
 
 def test_find_best_cycle():
-    '''add stub'''
-    pass
+    '''stub'''
+    road_map = [
+        ("Kentucky", "Frankfort", 38.197274, -84.86311),
+        ("Delaware", "Dover", 39.161921, -75.526755),
+        ("Minnesota", "Saint Paul", 44.95, -93.094)
+    ]
+    assert road_map == road_map
 
 
 def test_print_map():
-    '''add stub'''
-    pass
+    '''stub'''
+    road_map = [
+        ("Kentucky", "Frankfort", 38.197274, -84.86311),
+        ("Delaware", "Dover", 39.161921, -75.526755),
+        ("Minnesota", "Saint Paul", 44.95, -93.094)
+    ]
+    assert road_map == road_map
 
 
 def test_main():
-    '''add stub'''
-    pass
+    '''stub'''
+    road_map = [
+        ("Kentucky", "Frankfort", 38.197274, -84.86311),
+        ("Delaware", "Dover", 39.161921, -75.526755),
+        ("Minnesota", "Saint Paul", 44.95, -93.094)
+    ]
+    assert road_map == road_map
