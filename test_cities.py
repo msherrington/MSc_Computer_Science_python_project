@@ -33,7 +33,7 @@ def test_shift_cities():
         ("Delaware", "Dover", 39.161921, -75.526755),
         ("Minnesota", "Saint Paul", 44.95, -93.094)
     ]
-    assert shift_cities(road_map) == roadmap[-1] + roadmap[:-2]
+    assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
 def test_read_cities():
