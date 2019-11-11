@@ -30,25 +30,20 @@ def test_shift_cities():
 
 
 def test_read_cities():
-    '''stub'''
-    assert road_map == road_map
+    assert read_cities(road_map) == road_map
 
 
 def test_print_cities():
-    '''stub'''
-    assert road_map == road_map
+    assert print_cities(road_map) == road_map
 
 
 def test_find_best_cycle():
-    '''stub'''
-    assert road_map == road_map
+    assert find_best_cycle(road_map) == road_map
 
 
 def test_print_map():
-    '''stub'''
-    assert road_map == road_map
+    assert print_map(road_map) == road_map
 
 
 def test_main():
-    '''stub'''
-    assert road_map == road_map
+    assert isinstance(main(), str)
