@@ -9,11 +9,19 @@ def read_cities(file_name):
 
       Alabama -> Alaska -> Arizona -> ... -> Wyoming -> Alabama.
     """
-    return [
-        ("Kentucky", "Frankfort", 38.197274, -84.86311),
-        ("Delaware", "Dover", 39.161921, -75.526755),
-        ("Minnesota", "Saint Paul", 44.95, -93.094)
-    ]
+    road_map = []
+    running = True
+    infile = open(file_name, 'r')
+    while running:
+        string = infile.readline()
+        if string == '':
+            running = False
+        else:
+            state, city, long, lat = string.split('\t')
+            lat = lat.replace('\n', '')
+            four_tuple = (state, city, long, lat)
+            road_map.append(four_tuple)
+    return road_map
 
 
 def print_cities(road_map):
