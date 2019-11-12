@@ -60,7 +60,8 @@ def swap_cities(road_map, index1, index2):
     Allow for the possibility that `index1=index2`,
     and handle this case correctly.
     """
-    road_map[index1], road_map[index2] = road_map[index2], road_map[index1]
+    if index1 != index2:
+        road_map[index1], road_map[index2] = road_map[index2], road_map[index1]
     return road_map
 
 
