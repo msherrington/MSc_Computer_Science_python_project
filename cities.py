@@ -9,9 +9,15 @@ def read_cities(file_name):
 
       Alabama -> Alaska -> Arizona -> ... -> Wyoming -> Alabama.
     """
-    road_map = []
+
+    try:
+        infile = open(file_name, 'r')
+    except FileNotFoundError:
+        return 'File not found, please check the name and try again'
+
     running = True
-    infile = open(file_name, 'r')
+    road_map = []
+
     while running:
         line = infile.readline()
         if line == '':
