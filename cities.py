@@ -26,6 +26,9 @@ def read_cities(file_name):
             city_details = line.replace('\n', '').split('\t')
             four_tuple = tuple(city_details)
             road_map.append(four_tuple)
+
+    infile.close()
+
     return road_map
 
 
