@@ -88,6 +88,15 @@ def main():
     Reads in, and prints out, the city data, then creates the "best"
     cycle and prints it out.
     """
+    file_name = input('Enter the name of the file to read from: ')
+    suffix = '.txt'
+    if suffix not in file_name:
+        file_name += suffix
+    road_map = read_cities(file_name)
+    print(road_map)
+
+    # more logic here
+
     return 'best city data'
 
 
