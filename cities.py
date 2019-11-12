@@ -13,13 +13,12 @@ def read_cities(file_name):
     running = True
     infile = open(file_name, 'r')
     while running:
-        string = infile.readline()
-        if string == '':
+        line = infile.readline()
+        if line == '':
             running = False
         else:
-            state, city, long, lat = string.split('\t')
-            lat = lat.replace('\n', '')
-            four_tuple = (state, city, long, lat)
+            city_details = line.replace('\n', '').split('\t')
+            four_tuple = tuple(city_details)
             road_map.append(four_tuple)
     return road_map
 
