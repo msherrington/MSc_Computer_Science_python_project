@@ -25,11 +25,9 @@ def test_compute_total_distance():
 
 
 def test_swap_cities(road_map):
-    index1 = 0
-    index2 = 1
-    swapped = road_map
-    swapped[index1], swapped[index2] = swapped[index2], swapped[index1]
-    assert swap_cities(road_map, index1, index2) == swapped
+    index1, index2 = 0, 1
+    swapped = swap_cities(road_map, index1, index2)[0]
+    assert swapped[index1] == road_map[index2] and swapped[index2] == road_map[index1]
 
 
 def test_shift_cities(road_map):
