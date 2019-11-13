@@ -4,10 +4,11 @@ from cities import *
 
 @pytest.fixture
 def road_map():
+    """ Matches data in test-city-data.txt """
     return [
-        ("Kentucky", "Frankfort", 38.197274, -84.86311),
-        ("Delaware", "Dover", 39.161921, -75.526755),
-        ("Minnesota", "Saint Paul", 44.95, -93.094)
+        ('California', 'Sacramento', 38.555605, -121.468926),
+        ('Illinois', 'Springfield', 39.78325, -89.650373),
+        ('Nevada', 'Carson City', 39.160949, -119.753877)
     ]
 
 
