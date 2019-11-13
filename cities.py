@@ -57,14 +57,12 @@ def compute_total_distance():
 
 def swap_cities(road_map, index1, index2):
     """
-    Take the city at location `index` in the `road_map`, and the 
-    city at location `index2`, swap their positions in the `road_map`, 
-    compute the new total distance, and return the tuple 
-
-        (new_road_map, new_total_distance)
-
-    Allow for the possibility that `index1=index2`,
-    and handle this case correctly.
+    Swap the elements at index1 and index2 in the road_map
+    Calculate total distance of amended road_map
+    :param road_map: List of four-element Tuples
+    :param index1: Integer
+    :param index2: Integer
+    :return new_tuple: Two-element Tuple containing a List of Tuples and a Float
     """
     new_road_map = road_map[:]
     if index1 != index2:
