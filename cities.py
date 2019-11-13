@@ -2,8 +2,8 @@ def read_cities(file_name):
     """
     Reads in the cities from the given `file_name`
     Returns the cities data as a list of four-tuples
-    :param file_name: string
-    :return road_map: list of tuples
+    :param file_name: String
+    :return road_map: List of four-element Tuples
     """
 
     try:
