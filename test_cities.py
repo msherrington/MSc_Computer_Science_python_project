@@ -42,7 +42,8 @@ def test_read_cities(file_name, road_map):
 
 
 def test_print_cities(road_map):
-    assert print_cities(road_map) == road_map
+    rounded_road_map = [tuple((state, city, round(lat, 2), round(long, 2))) for state, city, lat, long in road_map]
+    assert print_cities(road_map) == rounded_road_map
 
 
 def test_find_best_cycle(road_map):
