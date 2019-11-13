@@ -40,7 +40,7 @@ def print_cities(road_map):
         state, city, lat, long = city_details
         lat = round(lat, 2)
         long = round(long, 2)
-        tup = tuple((state, city, lat, long))
+        tup = (state, city, lat, long)
         rounded_road_map.append(tup)
 
     return rounded_road_map
