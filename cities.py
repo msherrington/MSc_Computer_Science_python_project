@@ -1,3 +1,5 @@
+from math import sqrt
+
 def read_cities(file_name):
     # TODO: check done
     """
@@ -66,9 +68,19 @@ def compute_total_distance(road_map):
 
     return total_distance
 
+
+def euclidean_distance(coords1, coords2):
     """
-    flt = 9.386+18.496+10.646
-    return flt
+    Calculate the Euclidean distance between 2 cities
+    The distance between any two cities with the coordinates (x1, y1) and (x2,y2) is the standard Euclidean distance
+    sqrt((x1-x2)^2 + (y1-y2)^2)
+    :param coords1: Tuple containing longitude, latitude
+    :param coords2: Tuple containing longitude, latitude
+    :return: Float
+    """
+    long1, lat1 = coords1
+    long2, lat2 = coords2
+    return sqrt((long1 - long2)**2 + (lat1 - lat2)**2)
 
 
 def swap_cities(road_map, index1, index2):
