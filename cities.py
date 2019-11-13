@@ -107,8 +107,11 @@ def print_map(road_map):
 
 def main(file_name=None):
     """
-    Reads in, and prints out, the city data, then creates the "best"
-    cycle and prints it out.
+    Opens specified file by name,
+    Prints out city data # TODO
+    Calculates "best" cycle and prints it out. # TODO
+    :param name: String (optional)
+    :return String
     """
     if not file_name:
         file_name = input('Enter the name of the file to read from: ')
