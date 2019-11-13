@@ -1,13 +1,9 @@
 def read_cities(file_name):
     """
-    Read in the cities from the given `file_name`, and return 
-    them as a list of four-tuples: 
-
-      [(state, city, latitude, longitude), ...] 
-
-    Use this as your initial `road_map`, that is, the cycle 
-
-      Alabama -> Alaska -> Arizona -> ... -> Wyoming -> Alabama.
+    Reads in the cities from the given `file_name`
+    Returns the cities data as a list of four-tuples
+    :param file_name: string
+    :return road_map: list of tuples
     """
 
     try:
