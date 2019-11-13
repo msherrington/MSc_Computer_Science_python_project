@@ -4,7 +4,6 @@ from cities import *
 
 @pytest.fixture
 def file_name():
-    """ Matches data in test-city-data.txt """
     return 'test-city-data.txt'
 
 
@@ -35,19 +34,6 @@ def test_shift_cities(road_map):
 def test_read_cities(file_name, road_map):
     cities = read_cities(file_name)
     assert set(cities[0]).intersection(set(road_map[0]))
-
-
-def test_print_cities(road_map):
-    rounded_road_map = [tuple((state, city, round(lat, 2), round(long, 2))) for state, city, lat, long in road_map]
-    assert print_cities(road_map) == rounded_road_map
-
-
-def test_find_best_cycle(road_map):
-    assert find_best_cycle(road_map) == road_map
-
-
-def test_print_map(road_map):
-    assert print_map(road_map) == road_map
 
 
 def test_main(file_name):
