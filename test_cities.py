@@ -3,6 +3,12 @@ from cities import *
 
 
 @pytest.fixture
+def file_name():
+    """ Matches data in test-city-data.txt """
+    return 'test-city-data.txt'
+
+
+@pytest.fixture
 def road_map():
     """ Matches data in test-city-data.txt """
     return [
