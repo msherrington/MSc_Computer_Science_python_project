@@ -48,13 +48,24 @@ def print_cities(road_map):
 
 
 def compute_total_distance(road_map):
-    # TODO: everything
+    # TODO: check logic, update docstring
     """
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
     (for example) in the initial `road_map`, Wyoming connects to Alabama...
     :param road_map: List of Quadruples
-    :return Float
+    :return total_distance: Float
+    """
+    total_distance = 0
+    for i, city1 in enumerate(road_map):
+        coords1 = city1[-2:]
+        city2 = road_map[(i + 1) % len(road_map)]
+        coords2 = city2[-2:]
+        distance = euclidean_distance(coords1, coords2)
+        total_distance += distance
+
+    return total_distance
+
     """
     flt = 9.386+18.496+10.646
     return flt
