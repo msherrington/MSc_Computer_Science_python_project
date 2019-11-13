@@ -119,7 +119,8 @@ def main(file_name=None):
     if suffix not in file_name:
         file_name += suffix
     road_map = read_cities(file_name)
-    print(road_map)
+
+    print_map(road_map)
 
     # more logic here
 
