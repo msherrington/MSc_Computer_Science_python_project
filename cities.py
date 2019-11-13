@@ -1,4 +1,5 @@
 def read_cities(file_name):
+    # TODO: check done
     """
     Reads in the cities from the given `file_name`
     Returns the cities data as a list of four-tuples
@@ -24,11 +25,11 @@ def read_cities(file_name):
             road_map.append(four_tuple)
 
     infile.close()
-
     return road_map
 
 
 def print_cities(road_map):
+    # TODO: make it print, not return ?
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
@@ -47,6 +48,7 @@ def print_cities(road_map):
 
 
 def compute_total_distance(road_map):
+    # TODO: everything
     """
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
@@ -59,6 +61,7 @@ def compute_total_distance(road_map):
 
 
 def swap_cities(road_map, index1, index2):
+    # TODO: check done
     """
     Swap the elements at index1 and index2 in the road_map
     Calculate total distance of amended road_map
@@ -77,6 +80,7 @@ def swap_cities(road_map, index1, index2):
 
 
 def shift_cities(road_map):
+    # TODO: check done
     """
     For every index i in the `road_map`, the city at the position i moves
     to the position i+1. The city at the last position moves to the position
@@ -86,6 +90,7 @@ def shift_cities(road_map):
 
 
 def find_best_cycle(road_map):
+    # TODO: everything
     """
     Using a combination of `swap_cities` and `shift_cities`, 
     try `10000` swaps/shifts, and each time keep the best cycle found so far. 
@@ -97,6 +102,7 @@ def find_best_cycle(road_map):
 
 
 def print_map(road_map):
+    # TODO: everything (and print, not return?)
     """
     Prints, in an easily understandable format, the cities and 
     their connections, along with the cost for each connection 
@@ -106,6 +112,7 @@ def print_map(road_map):
 
 
 def main(file_name=None):
+    # TODO: finish logic
     """
     Opens specified file by name,
     Prints out city data # TODO
@@ -122,10 +129,10 @@ def main(file_name=None):
 
     print_map(road_map)
 
-    # more logic here
+    # TODO:  more logic here
 
     return 'best city data'
 
 
-if __name__ == "__main__": #keep this in
+if __name__ == "__main__":  # keep this in
     main()
