@@ -32,8 +32,18 @@ def print_cities(road_map):
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
+    :param road_map: list of tuples
+    :return rounded_road_map: list of tuples
     """
-    return road_map
+    rounded_road_map = []
+    for city_details in road_map:
+        state, city, lat, long = city_details
+        lat = round(lat, 2)
+        long = round(long, 2)
+        tup = tuple((state, city, lat, long))
+        rounded_road_map.append(tup)
+
+    return rounded_road_map
 
 
 def compute_total_distance():
@@ -77,6 +87,7 @@ def find_best_cycle(road_map):
     After `10000` swaps/shifts, return the best cycle found so far.
     Use randomly generated indices for swapping.
     """
+
     return road_map
 
 
