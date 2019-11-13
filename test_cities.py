@@ -36,8 +36,9 @@ def test_shift_cities(road_map):
     assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
-def test_read_cities(road_map):
-    assert read_cities(road_map) == road_map
+def test_read_cities(file_name, road_map):
+    cities = read_cities(file_name)
+    assert set(cities[0]).intersection(set(road_map[0]))
 
 
 def test_print_cities(road_map):
