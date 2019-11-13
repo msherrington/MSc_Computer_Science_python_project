@@ -50,5 +50,5 @@ def test_print_map(road_map):
     assert print_map(road_map) == road_map
 
 
-def test_main():
-    assert isinstance(main(), str)
+def test_main(file_name):
+    assert isinstance(main(file_name), str)
