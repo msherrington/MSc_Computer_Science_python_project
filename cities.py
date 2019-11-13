@@ -2,9 +2,9 @@ def read_cities(file_name):
     # TODO: check done
     """
     Reads in the cities from the given `file_name`
-    Returns the cities data as a list of four-tuples
+    Returns the cities data as a list of quadruples (4-element tuples)
     :param file_name: String
-    :return road_map: List of four-element Tuples
+    :return road_map: List of Quadruples
     """
 
     try:
@@ -33,8 +33,8 @@ def print_cities(road_map):
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
-    :param road_map: List of Tuples
-    :return rounded_road_map: List of four-element Tuples
+    :param road_map: List of Quadruples
+    :return rounded_road_map: List of Quadruples
     """
     rounded_road_map = []
     for city_details in road_map:
@@ -53,7 +53,7 @@ def compute_total_distance(road_map):
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
     (for example) in the initial `road_map`, Wyoming connects to Alabama...
-    :param road_map: List of four-element Tuples
+    :param road_map: List of Quadruples
     :return Float
     """
     flt = 9.386+18.496+10.646
@@ -65,10 +65,10 @@ def swap_cities(road_map, index1, index2):
     """
     Swap the elements at index1 and index2 in the road_map
     Calculate total distance of amended road_map
-    :param road_map: List of four-element Tuples
+    :param road_map: List of Quadruples
     :param index1: Integer
     :param index2: Integer
-    :return new_tuple: Two-element Tuple containing a List of Tuples and a Float
+    :return new_tuple: Tuple containing a List of Quadruples and a Float
     """
     new_road_map = road_map[:]
     if index1 != index2:
