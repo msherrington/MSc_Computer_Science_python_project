@@ -105,12 +105,13 @@ def print_map(road_map):
     return road_map
 
 
-def main():
+def main(file_name=None):
     """
     Reads in, and prints out, the city data, then creates the "best"
     cycle and prints it out.
     """
-    file_name = input('Enter the name of the file to read from: ')
+    if not file_name:
+        file_name = input('Enter the name of the file to read from: ')
     suffix = '.txt'
     if suffix not in file_name:
         file_name += suffix
