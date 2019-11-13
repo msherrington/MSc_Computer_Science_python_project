@@ -66,9 +66,13 @@ def swap_cities(road_map, index1, index2):
     Allow for the possibility that `index1=index2`,
     and handle this case correctly.
     """
+    new_road_map = road_map[:]
     if index1 != index2:
-        road_map[index1], road_map[index2] = road_map[index2], road_map[index1]
-    return road_map
+        new_road_map[index1], new_road_map[index2] = new_road_map[index2], new_road_map[index1]
+
+    distance = compute_total_distance(new_road_map)
+    new_tuple = (new_road_map, distance)
+    return new_tuple
 
 
 def shift_cities(road_map):
