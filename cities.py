@@ -110,7 +110,7 @@ def main(file_name=None):
     Opens specified file by name,
     Prints out city data # TODO
     Calculates "best" cycle and prints it out. # TODO
-    :param name: String (optional)
+    :param file_name: String (optional)
     :return String
     """
     if not file_name:
