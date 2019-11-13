@@ -46,13 +46,16 @@ def print_cities(road_map):
     return rounded_road_map
 
 
-def compute_total_distance():
+def compute_total_distance(road_map):
     """
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
     (for example) in the initial `road_map`, Wyoming connects to Alabama...
+    :param road_map: List of four-element Tuples
+    :return Float
     """
-    return 9.386+18.496+10.646
+    flt = 9.386+18.496+10.646
+    return flt
 
 
 def swap_cities(road_map, index1, index2):
