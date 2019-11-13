@@ -32,8 +32,8 @@ def print_cities(road_map):
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
-    :param road_map: list of tuples
-    :return rounded_road_map: list of tuples
+    :param road_map: List of Tuples
+    :return rounded_road_map: List of four-element Tuples
     """
     rounded_road_map = []
     for city_details in road_map:
