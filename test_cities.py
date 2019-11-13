@@ -18,7 +18,7 @@ def road_map():
 
 
 def test_compute_total_distance(road_map):
-    assert compute_total_distance(road_map) == pytest.approx(9.386+18.496+10.646, 0.01)
+    assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
 
 
 def test_swap_cities(road_map):
