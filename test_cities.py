@@ -17,6 +17,11 @@ def road_map():
     ]
 
 
+@pytest.fixture
+def road_map_length(road_map):
+    return len(road_map)
+
+
 def test_compute_total_distance(road_map):
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
 
