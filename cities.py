@@ -35,7 +35,7 @@ def read_cities(file_name):
 
 
 def print_cities(road_map):
-    # TODO: check done
+    # TODO: check done - print city list line-by-line??
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
@@ -79,8 +79,8 @@ def euclidean_distance(coords1, coords2):
     Calculate the Euclidean distance between 2 cities
     Given coordinates of (x1,y1) and (x2,y2)
     Formula is sqrt((x1-x2)**2 + (y1-y2)**2)
-    :param coords1: Tuple containing longitude, latitude
-    :param coords2: Tuple containing longitude, latitude
+    :param coords1: Tuple containing latitude, longitude
+    :param coords2: Tuple containing latitude, longitude
     :return: Float
     """
     lon1, lat1 = coords1
@@ -160,7 +160,7 @@ def print_map(road_map):
     their connections, along with the cost for each connection 
     and the total cost.
     """
-    print('whatever goes here')
+    print('visual grid')
     return
 
 
