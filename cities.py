@@ -136,11 +136,11 @@ def print_map(road_map):
 
 
 def main(file_name=None):
-    # TODO: finish logic
+    # TODO: check done
     """
-    Opens specified file by name,
-    Prints out city data # TODO
-    Calculates "best" cycle and prints it out. # TODO
+    Open specified file by name
+    Print out city data
+    Calculate "best" cycle and print it out
     :param file_name: String (optional)
     :return String
     """
@@ -149,13 +149,13 @@ def main(file_name=None):
     suffix = '.txt'
     if suffix not in file_name:
         file_name += suffix
+
     road_map = read_cities(file_name)
+    print_cities(road_map)
 
-    print_map(road_map)
-
-    # TODO:  more logic here
-
-    return 'best city data'
+    best_cycle = find_best_cycle(road_map)
+    print_map(best_cycle)
+    return
 
 
 if __name__ == "__main__":  # keep this in
