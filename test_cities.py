@@ -39,7 +39,3 @@ def test_shift_cities(road_map):
 def test_read_cities(file_name, road_map):
     cities = read_cities(file_name)
     assert set(cities[0]).intersection(set(road_map[0]))
-
-
-def test_main(file_name):
-    assert isinstance(main(file_name), str)
