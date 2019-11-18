@@ -1,5 +1,6 @@
 from math import sqrt
 
+
 def read_cities(file_name):
     # TODO: check done
     """
