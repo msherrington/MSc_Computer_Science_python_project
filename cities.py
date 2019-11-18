@@ -25,10 +25,10 @@ def read_cities(file_name):
             running = False
         else:
             city_details = line.replace('\n', '').split('\t')
-            (state, city, lat, long) = city_details
+            (state, city, lat, lon) = city_details
             lat = float(lat)
-            long = float(long)
-            road_map.append((state, city, lat, long))
+            lon = float(lon)
+            road_map.append((state, city, lat, lon))
 
     infile.close()
     return road_map
@@ -44,10 +44,10 @@ def print_cities(road_map):
     """
     rounded_road_map = []
     for city_details in road_map:
-        (state, city, lat, long) = city_details
+        (state, city, lat, lon) = city_details
         lat = round(lat, 2)
-        long = round(long, 2)
-        quad = (state, city, lat, long)
+        lon = round(lon, 2)
+        quad = (state, city, lat, lon)
         rounded_road_map.append(quad)
     print(rounded_road_map)
     return
@@ -83,9 +83,9 @@ def euclidean_distance(coords1, coords2):
     :param coords2: Tuple containing longitude, latitude
     :return: Float
     """
-    long1, lat1 = coords1
-    long2, lat2 = coords2
-    return sqrt((long1 - long2)**2 + (lat1 - lat2)**2)
+    lon1, lat1 = coords1
+    lon2, lat2 = coords2
+    return sqrt((lon1 - lon2)**2 + (lat1 - lat2)**2)
 
 
 def swap_cities(road_map, index1, index2):
