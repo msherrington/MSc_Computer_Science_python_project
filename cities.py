@@ -32,7 +32,7 @@ def read_cities(file_name):
 
 
 def print_cities(road_map):
-    # TODO: make it print, not return ?
+    # TODO: check done
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
@@ -44,10 +44,10 @@ def print_cities(road_map):
         state, city, lat, long = city_details
         lat = round(lat, 2)
         long = round(long, 2)
-        tup = (state, city, lat, long)
-        rounded_road_map.append(tup)
-
-    return rounded_road_map
+        quad = (state, city, lat, long)
+        rounded_road_map.append(quad)
+    print(rounded_road_map)
+    return
 
 
 def compute_total_distance(road_map):
