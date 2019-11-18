@@ -51,11 +51,11 @@ def print_cities(road_map):
 
 
 def compute_total_distance(road_map):
-    # TODO: check logic, update docstring
+    # TODO: check done
     """
-    Returns, as a floating point number, the sum of the distances of all 
-    the connections in the `road_map`. Remember that it's a cycle, so that 
-    (for example) in the initial `road_map`, Wyoming connects to Alabama...
+    Sum and return the total euclidean distance between
+    each consecutive coordinate in the road_map cycle
+    (including distance from last to first location)
     :param road_map: List of Quadruples
     :return total_distance: Float
     """
@@ -71,10 +71,11 @@ def compute_total_distance(road_map):
 
 
 def euclidean_distance(coords1, coords2):
+    # TODO: check done
     """
     Calculate the Euclidean distance between 2 cities
-    The distance between any two cities with the coordinates (x1, y1) and (x2,y2) is the standard Euclidean distance
-    sqrt((x1-x2)^2 + (y1-y2)^2)
+    Given coordinates of (x1,y1) and (x2,y2)
+    Formula is sqrt((x1-x2)**2 + (y1-y2)**2)
     :param coords1: Tuple containing longitude, latitude
     :param coords2: Tuple containing longitude, latitude
     :return: Float
