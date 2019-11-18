@@ -164,6 +164,14 @@ def print_map(road_map):
     return
 
 
+def visualise(road_map):
+    """ either graphically print the given road_map or will open a GUI window with the drawing
+    of the road_map. Also, extend the functionality of your main function so that it provides
+    visualisation of the best route  when found. You do not need to test the visualise function.
+    """
+    print('grid')
+
+
 def main(file_name=None):
     # TODO: check done
     """
