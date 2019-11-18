@@ -21,6 +21,11 @@ def test_compute_total_distance(road_map):
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
 
 
+def test_euclidean_distance(road_map):
+    city1, city2 = road_map[0], road_map[1]
+    assert euclidean_distance(city1[-2:], city2[-2:]) == pytest.approx(31.842, 0.01)
+
+
 def test_swap_cities(road_map):
     index1, index2 = 0, 1
     swapped = swap_cities(road_map, index1, index2)[0]
