@@ -37,5 +37,9 @@ def test_shift_cities(road_map):
 
 
 def test_read_cities(file_name, road_map):
+    """
+    Included this test (even though it's not required) to
+    check test data is being read from the file correctly
+    """
     cities = read_cities(file_name)
     assert set(cities[0]).intersection(set(road_map[0]))
