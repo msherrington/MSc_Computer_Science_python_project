@@ -126,13 +126,14 @@ def find_best_cycle(road_map):
 
 
 def print_map(road_map):
-    # TODO: everything (and print, not return?)
+    # TODO: everything (and print, not return)
     """
     Prints, in an easily understandable format, the cities and 
     their connections, along with the cost for each connection 
     and the total cost.
     """
-    return road_map
+    print('whatever goes here')
+    return
 
 
 def main(file_name=None):
