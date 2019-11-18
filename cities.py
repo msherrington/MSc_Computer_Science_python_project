@@ -2,6 +2,36 @@ from math import sqrt
 import random
 
 
+# CHECKLIST
+# You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
+# You must provide good code coverage to catch any errors before we do.
+# We expect to see at least 5 tests for each function that needs to be tested (see above).
+
+# Test types:
+# test output matches whats expected from input
+# test output type matches expected data type
+# test passing nothing in creates a certain error type
+# test number of elements in returned result
+# test element types in returned tuple
+# test different ways to break the function
+# test passing the same variable in twice to a function which takes two discrete arguments
+# test against hardcoded results and against dynamic results
+
+# Style...
+# Use proper indentation and spacing, (check PEP8)
+# Don't repeat code if you can put it in a function and just call the function.
+# Try to avoid redundancy (such as the beginner's if better == True).
+
+# REQUIRED FUNCTIONS X 8:
+# def read_cities(file_name) - no test
+# def print_cities(road_map) - no test
+# def compute_total_distance(road_map)
+# def swap_cities(road_map, index1, index2)
+# def shift_cities(road_map):
+# def find_best_cycle(road_map) - no test
+# def print_map(road_map) - no test
+# def main() - no test
+
 def read_cities(file_name):
     # TODO: check done
     """
