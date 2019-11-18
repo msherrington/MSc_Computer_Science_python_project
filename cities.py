@@ -24,8 +24,10 @@ def read_cities(file_name):
             running = False
         else:
             city_details = line.replace('\n', '').split('\t')
-            quadruple = tuple(city_details)
-            road_map.append(quadruple)
+            (state, city, lat, long) = city_details
+            lat = float(lat)
+            long = float(long)
+            road_map.append((state, city, lat, long))
 
     infile.close()
     return road_map
@@ -41,7 +43,7 @@ def print_cities(road_map):
     """
     rounded_road_map = []
     for city_details in road_map:
-        state, city, lat, long = city_details
+        (state, city, lat, long) = city_details
         lat = round(lat, 2)
         long = round(long, 2)
         quad = (state, city, lat, long)

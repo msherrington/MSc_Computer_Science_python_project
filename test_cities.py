@@ -11,9 +11,9 @@ def file_name():
 def road_map():
     """ Matches data in test-city-data.txt """
     return [
-        ('California', 'Sacramento', 38.555605, -121.468926),
-        ('Illinois', 'Springfield', 39.78325, -89.650373),
-        ('Nevada', 'Carson City', 39.160949, -119.753877)
+        ('California', 'Sacramento', '38.555605', '-121.468926'),
+        ('Illinois', 'Springfield', '39.78325', '-89.650373'),
+        ('Nevada', 'Carson City', '39.160949', '-119.753877')
     ]
 
 
