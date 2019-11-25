@@ -65,22 +65,17 @@ def read_cities(file_name):
 
 
 def print_cities(road_map):
-    # TODO: check done - print city list line-by-line??
+    # TODO: check done
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
     :param road_map: List of Quadruples
-    :return rounded_road_map: List of Quadruples
     """
-    rounded_road_map = []
     for city_details in road_map:
-        (state, city, lat, lon) = city_details
-        lat = round(lat, 2)
+        (state, city, lon, lat) = city_details
         lon = round(lon, 2)
-        quad = (state, city, lat, lon)
-        rounded_road_map.append(quad)
-    print(rounded_road_map)
-    return
+        lat = round(lat, 2)
+        print('{}, {}: {}, {}'.format(city, state, lon, lat))
 
 
 def compute_total_distance(road_map):
