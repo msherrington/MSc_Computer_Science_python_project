@@ -76,6 +76,7 @@ def print_cities(road_map):
         lon = round(lon, 2)
         lat = round(lat, 2)
         print('{}, {}: {}, {}'.format(city, state, lon, lat))
+    print('='*40)
 
 
 def compute_total_distance(road_map):
@@ -164,7 +165,7 @@ def find_best_cycle(road_map):
                 best_cycle = cycle
         count -= 1
 
-    return best_cycle[0]
+    return best_cycle
 
 
 def get_two_random_indices(maximum):
@@ -222,7 +223,10 @@ def main(file_name=None):
 
     best_cycle = find_best_cycle(road_map)
     print_map(best_cycle)
-    return
+
+    best_road_map = best_cycle[0]
+
+    # TODO: implement visualise(best_road_map)
 
 
 if __name__ == "__main__":  # keep this in
