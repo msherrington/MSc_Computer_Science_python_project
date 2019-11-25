@@ -153,20 +153,15 @@ def find_best_cycle(road_map):
     current_road_map = road_map
     best_cycle = None
     count = 10000
-    # choices = ['swap', 'shift']
     while count > 0:
         if count % 2 == 0:
-            # if random.choice(choices) == 'shift':
-            print('shift')
             current_road_map = shift_cities(current_road_map)
         else:
-            print('swap')
             index1, index2 = get_two_random_indices(maximum=len(current_road_map)-1)
             cycle = swap_cities(current_road_map, index1, index2)
             if not best_cycle or cycle[1] < best_cycle[1]:
                 current_road_map = cycle[0]
                 best_cycle = cycle
-        print(best_cycle[1]) if best_cycle else None
         count -= 1
 
     return best_cycle[0]
