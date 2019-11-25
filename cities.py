@@ -173,8 +173,13 @@ def find_best_cycle(road_map):
 
 
 def get_two_random_indices(maximum):
-    one = random.randint(1, maximum)
-    two = random.randint(1, maximum)
+    """
+    Return two random integers in the range 0 to maximum
+    :param maximum: integer
+    :return one, two: integers
+    """
+    one = random.randint(0, maximum)
+    two = random.randint(0, maximum)
     return one, two
 
 
