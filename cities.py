@@ -178,16 +178,20 @@ def get_two_random_indices(maximum):
     return one, two
 
 
-def print_map(road_map):
-    # TODO: everything (and print, not return)
+def print_map(best_cycle):
+    # TODO: check ths one carefully
     """
-    Prints, in an easily understandable format, the cities and 
-    their connections, along with the cost for each connection 
-    and the total cost.
+    Print the connection and cost between each city
+    Print the total cost for the entire cycle
+    :param best_cycle: Tuple containing List of Tuples and a Float
     """
-    print(road_map)
-    # print('visual grid')
-    return
+    road_map = best_cycle[0]
+    for i, city in enumerate(road_map):
+        city2 = road_map[(i + 1) % len(road_map)]
+        cost = euclidean_distance(city[-2:], city2[-2:])
+        print('{} to {}: {}'.format(city[0], city2[0], cost))
+    total_distance = best_cycle[1]
+    print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
 
 
 def visualise(road_map):
