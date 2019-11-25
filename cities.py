@@ -185,7 +185,8 @@ def print_map(road_map):
     their connections, along with the cost for each connection 
     and the total cost.
     """
-    print('visual grid')
+    print(road_map)
+    # print('visual grid')
     return
 
 
@@ -198,7 +199,7 @@ def visualise(road_map):
 
 
 def main(file_name=None):
-    # TODO: check done
+    # TODO: check done and update docstring
     """
     Open specified file by name
     Print out city data
