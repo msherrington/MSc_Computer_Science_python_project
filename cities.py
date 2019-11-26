@@ -3,6 +3,9 @@ import random
 
 
 # CHECKLIST
+
+# TODO: use try/except clauses for various error types! Don't let the tests fail unexpectedly.
+
 # You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
 # You must provide good code coverage to catch any errors before we do.
 # We expect to see at least 5 tests for each function that needs to be tested (see above).
