@@ -51,7 +51,7 @@ def read_cities(file_name):
     except ValueError:
         print('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
         if not file_name.endswith('.txt'):
-            print('Try using a text file with the suffix ".txt"')
+            print('Try using a text file')
 
 
 def print_cities(road_map):
@@ -279,28 +279,28 @@ def visualise(road_map):
 
 def main(file_name=None):
     # TODO: visualisation updates
-    # TODO: catch exceptions
     """
     Open specified file by name
     Print city data
     Calculate "best" cycle and print it
     TODO print graphic visualisation of the best cycle
     :param file_name: String (optional)
-    :return String
     """
+
     if not file_name:
         file_name = input('Enter the name of the file to read from: ')
 
-    road_map = read_cities(file_name)
-    if road_map:
-        print_cities(road_map)
+    try:
+        road_map = read_cities(file_name)
+        if road_map:
+            print_cities(road_map)
+            best_cycle = find_best_cycle(road_map)
+            print_map(best_cycle)
+            best_road_map = best_cycle[0]
+            # TODO: implement visualise(best_road_map)
 
-        best_cycle = find_best_cycle(road_map)
-        print_map(best_cycle)
-
-        best_road_map = best_cycle[0]
-
-        # TODO: implement visualise(best_road_map)
+    except TypeError:
+        pass
 
 
 if __name__ == "__main__":  # keep this in
