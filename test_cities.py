@@ -62,4 +62,4 @@ def test_read_cities(file_name, road_map):
     check test data is being read from the file correctly
     """
     cities = read_cities(file_name)
-    assert set(cities[0]).intersection(set(road_map[0]))
+    assert set(cities).intersection(set(road_map))
