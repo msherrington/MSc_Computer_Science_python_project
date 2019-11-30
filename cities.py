@@ -65,13 +65,14 @@ def read_cities(file_name):
 
 
 def print_cities(road_map):
-    # TODO: catch exceptions
+    # TODO: check done
     """
     Unpack city data from road_map
     Format longitude and latitude to 2 decimal places
     Print a list of cities and their coordinates
     :param road_map: List of Quadruples
     """
+
     try:
         if not road_map:
             print('No city data to print')
@@ -103,12 +104,10 @@ def round_coordinates(coord, city, state, coord_type):
     :param coord_type: String
     :return: Float (rounded to 2 decimal places)
     """
+
     try:
         if isinstance(coord, (str, int)):
             coord = float(coord)
-
-        if not isinstance(coord, float):
-            raise TypeError
         return round(coord, 2)
 
     except (TypeError, ValueError):
