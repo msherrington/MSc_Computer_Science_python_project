@@ -186,14 +186,21 @@ def swap_cities(road_map, index1, index2):
 
 
 def shift_cities(road_map):
-    # TODO: catch exceptions
+    # TODO: check done
     """
-    For every index i in the `road_map`, the city at the position i moves
-    to the position i+1. The city at the last position moves to the position
-    0. Return the new road map. 
+    Return a mutated version of the road_map list
+    with the last index moved to index zero
+    and all other elements moved to the next index along
+    :param road_map: List of Quadruples
+    :return List of Quadruples
     """
-    if road_map:
+
+    try:
         return [road_map[-1]] + road_map[:-1]
+    except IndexError:
+        print('Cannot shift cities in empty road_map')
+    except TypeError:
+        print('Invalid datatype, cannot shift cities')
 
 
 def find_best_cycle(road_map):
