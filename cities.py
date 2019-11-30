@@ -36,7 +36,7 @@ import random
 # def main() - no test
 
 def read_cities(file_name):
-    # TODO: check if I need the suffix block
+    # TODO: check done
     """
     Read in the data from the given `file_name`
     Return the data as a list of quadruples (4-element tuples)
@@ -44,24 +44,24 @@ def read_cities(file_name):
     :return road_map: List of Quadruples
     """
 
-    suffix = '.txt'
-    if not file_name.endswith(suffix):
-        file_name += suffix
-
     road_map = []
     try:
         with open(file_name) as infile:
             for line in infile:
                 location = line.replace('\n', '').split('\t')
                 state, city, lon, lat = location
-                lon = float(lon)
-                lat = float(lat)
-                road_map.append((state, city, lon, lat))
+                quadruple = (state, city, float(lon), float(lat))
+                road_map.append(quadruple)
         return road_map
+
     except FileNotFoundError:
         print('File not found, check the filename and try again')
+        if '.' not in file_name:
+            print('Remember to include the file type suffix e.g. filename.txt')
     except ValueError:
-        print('Bad data on line {} of "{}"'.format(str(len(road_map)+1), file_name))
+        print('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
+        if not file_name.endswith('.txt'):
+            print('Try using a text file with the suffix ".txt"')
 
 
 def print_cities(road_map):
