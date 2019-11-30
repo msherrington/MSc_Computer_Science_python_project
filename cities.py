@@ -162,23 +162,28 @@ def euclidean_distance(location1, location2):
     except (TypeError, ValueError):
         print('Error calculating euclidean_distance, check location data')
 
+
 def swap_cities(road_map, index1, index2):
     # TODO: catch exceptions
     """
-    Swap the elements at index1 and index2 in the road_map
-    Calculate total distance of amended road_map
+    Swap the elements at index1 and index2 in the road_map list
+    Calculate total distance between cities in amended road_map
     :param road_map: List of Quadruples
     :param index1: Integer
     :param index2: Integer
     :return new_tuple: Tuple containing a List of Quadruples and a Float
     """
-    new_road_map = road_map[:]
-    if index1 != index2:
-        new_road_map[index1], new_road_map[index2] = new_road_map[index2], new_road_map[index1]
 
-    distance = compute_total_distance(new_road_map)
-    new_tuple = (new_road_map, distance)
-    return new_tuple
+    try:
+        new_map = road_map[:]
+        if index1 != index2:
+            new_map[index1], new_map[index2] = new_map[index2], new_map[index1]
+        distance = compute_total_distance(new_map)
+        if distance:
+            return tuple((new_map, distance))
+
+    except TypeError:
+        print('Error when swapping cities, check data')
 
 
 def shift_cities(road_map):
