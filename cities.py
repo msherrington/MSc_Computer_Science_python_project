@@ -287,20 +287,16 @@ def main(file_name=None):
     :param file_name: String (optional)
     """
 
-    if not file_name:
+    while not file_name:
         file_name = input('Enter the name of the file to read from: ')
 
-    try:
-        road_map = read_cities(file_name)
-        if road_map:
-            print_cities(road_map)
-            best_cycle = find_best_cycle(road_map)
-            print_map(best_cycle)
-            best_road_map = best_cycle[0]
-            # TODO: implement visualise(best_road_map)
-
-    except TypeError:
-        pass
+    road_map = read_cities(file_name)
+    if road_map:
+        print_cities(road_map)
+        best_cycle = find_best_cycle(road_map)
+        print_map(best_cycle)
+        best_road_map = best_cycle[0]
+        # TODO: implement visualise(best_road_map)
 
 
 if __name__ == "__main__":  # keep this in
