@@ -114,12 +114,13 @@ def round_coordinates(coord, city, state, coord_type):
     except (TypeError, ValueError):
         print('Error rounding {} for {}, {}. Check data type'.format(coord_type, city, state))
 
+
 def compute_total_distance(road_map):
-    # TODO: check done
+    # TODO: catch exceptions
     """
-    Sum and return the total euclidean distance between
-    each consecutive coordinate in the road_map cycle
-    (including distance from last to first location)
+    Iterate over road_map data, sum the distance between each
+    consecutive city (including first and last cities, to form a cycle)
+    Keep a running sum of the distances and return the total
     :param road_map: List of Quadruples
     :return total_distance: Float
     """
@@ -135,13 +136,13 @@ def compute_total_distance(road_map):
 
 
 def euclidean_distance(coords1, coords2):
-    # TODO: check done
+    # TODO: catch exceptions
     """
     Calculate the Euclidean distance between 2 cities
     Given coordinates of (x1,y1) and (x2,y2)
     Formula is sqrt((x1-x2)**2 + (y1-y2)**2)
-    :param coords1: Tuple containing latitude, longitude
-    :param coords2: Tuple containing latitude, longitude
+    :param coords1: Tuple containing longitude, latitude
+    :param coords2: Tuple containing longitude, latitude
     :return: Float
     """
     lon1, lat1 = coords1
@@ -150,7 +151,7 @@ def euclidean_distance(coords1, coords2):
 
 
 def swap_cities(road_map, index1, index2):
-    # TODO: check done
+    # TODO: catch exceptions
     """
     Swap the elements at index1 and index2 in the road_map
     Calculate total distance of amended road_map
@@ -169,23 +170,27 @@ def swap_cities(road_map, index1, index2):
 
 
 def shift_cities(road_map):
-    # TODO: check done
+    # TODO: catch exceptions
     """
     For every index i in the `road_map`, the city at the position i moves
     to the position i+1. The city at the last position moves to the position
     0. Return the new road map. 
     """
-    return [road_map[-1]] + road_map[:-1]
+    if road_map:
+        return [road_map[-1]] + road_map[:-1]
 
 
 def find_best_cycle(road_map):
     # TODO: check logic and update docstring
+    # TODO: catch exceptions
     """
     Using a combination of `swap_cities` and `shift_cities`, 
     try `10000` swaps/shifts, and each time keep the best cycle found so far. 
     After `10000` swaps/shifts, return the best cycle found so far.
     Use randomly generated indices for swapping.
     """
+    if not road_map:
+        return
     current_road_map = road_map
     best_cycle = None
     count = 10000
@@ -204,6 +209,7 @@ def find_best_cycle(road_map):
 
 
 def get_two_random_indices(maximum):
+    # TODO: catch exceptions
     """
     Return two random integers in the range 0 to maximum
     :param maximum: integer
@@ -216,11 +222,14 @@ def get_two_random_indices(maximum):
 
 def print_map(best_cycle):
     # TODO: check ths one carefully
+    # TODO: catch exceptions
     """
     Print the connection and cost between each city
     Print the total cost for the entire cycle
     :param best_cycle: Tuple containing List of Tuples and a Float
     """
+    if not best_cycle:
+        return
     road_map = best_cycle[0]
     for i, city in enumerate(road_map):
         city2 = road_map[(i + 1) % len(road_map)]
@@ -231,6 +240,8 @@ def print_map(best_cycle):
 
 
 def visualise(road_map):
+    # TODO: logic (Tkinter?)
+    # TODO: catch exceptions
     """ either graphically print the given road_map or will open a GUI window with the drawing
     of the road_map. Also, extend the functionality of your main function so that it provides
     visualisation of the best route  when found. You do not need to test the visualise function.
@@ -239,29 +250,29 @@ def visualise(road_map):
 
 
 def main(file_name=None):
-    # TODO: check done and update docstring
+    # TODO: visualisation updates
+    # TODO: catch exceptions
     """
     Open specified file by name
-    Print out city data
-    Calculate "best" cycle and print it out
+    Print city data
+    Calculate "best" cycle and print it
+    TODO print graphic visualisation of the best cycle
     :param file_name: String (optional)
     :return String
     """
     if not file_name:
         file_name = input('Enter the name of the file to read from: ')
-    suffix = '.txt'
-    if suffix not in file_name:
-        file_name += suffix
 
     road_map = read_cities(file_name)
-    print_cities(road_map)
+    if road_map:
+        print_cities(road_map)
 
-    best_cycle = find_best_cycle(road_map)
-    print_map(best_cycle)
+        best_cycle = find_best_cycle(road_map)
+        print_map(best_cycle)
 
-    best_road_map = best_cycle[0]
+        best_road_map = best_cycle[0]
 
-    # TODO: implement visualise(best_road_map)
+        # TODO: implement visualise(best_road_map)
 
 
 if __name__ == "__main__":  # keep this in
