@@ -36,50 +36,59 @@ import random
 # def main() - no test
 
 def read_cities(file_name):
-    # TODO: check done
+    # TODO: check if I need the suffix block
     """
-    Reads in the cities from the given `file_name`
-    Returns the cities data as a list of quadruples (4-element tuples)
+    Read in the data from the given `file_name`
+    Return the data as a list of quadruples (4-element tuples)
     :param file_name: String
     :return road_map: List of Quadruples
     """
 
-    try:
-        infile = open(file_name, 'r')
-    except FileNotFoundError:
-        return 'File not found, please check the name and try again'
+    suffix = '.txt'
+    if not file_name.endswith(suffix):
+        file_name += suffix
 
-    running = True
     road_map = []
-
-    while running:
-        line = infile.readline()
-        if line == '':
-            running = False
-        else:
-            city_details = line.replace('\n', '').split('\t')
-            (state, city, lat, lon) = city_details
-            lat = float(lat)
-            lon = float(lon)
-            road_map.append((state, city, lat, lon))
-
-    infile.close()
-    return road_map
+    try:
+        with open(file_name) as infile:
+            for line in infile:
+                location = line.replace('\n', '').split('\t')
+                state, city, lon, lat = location
+                lon = float(lon)
+                lat = float(lat)
+                road_map.append((state, city, lon, lat))
+        return road_map
+    except FileNotFoundError:
+        print('File not found, check the filename and try again')
+    except ValueError:
+        print('Bad data on line {} of "{}"'.format(str(len(road_map)+1), file_name))
 
 
 def print_cities(road_map):
-    # TODO: check done
+    # TODO: catch exceptions
     """
-    Prints a list of cities, along with their locations. 
-    Print only one or two digits after the decimal point.
+    Unpack city data from road_map
+    Format longitude and latitude to 2 decimal places
+    Print a list of cities and their coordinates
     :param road_map: List of Quadruples
     """
-    for city_details in road_map:
-        (state, city, lon, lat) = city_details
-        lon = round(lon, 2)
-        lat = round(lat, 2)
-        print('{}, {}: {}, {}'.format(city, state, lon, lat))
-    print('='*40)
+    try:
+        if not road_map:
+            print('No city data to print')
+            return
+        if not isinstance(road_map, list):
+            raise TypeError
+
+        for location in road_map:
+            state, city, lon, lat = location
+            lon = round_coordinates(lon, city, state, 'longitude')
+            lat = round_coordinates(lat, city, state, 'latitude')
+            if lon and lat:
+                print('{}, {}: {}, {}'.format(city, state, lon, lat))
+        print('='*40)
+
+    except (TypeError, ValueError):
+        print('Error printing cities, please check data format')
 
 
 def round_coordinates(coord, city, state, coord_type):
