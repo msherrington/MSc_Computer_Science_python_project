@@ -82,6 +82,29 @@ def print_cities(road_map):
     print('='*40)
 
 
+def round_coordinates(coord, city, state, coord_type):
+    # TODO: check done!
+    """
+    Takes a longitude or latitude
+    Convert string to float if necessary
+    Return the float rounded to 2 decimal places
+    :param coord: Float or String
+    :param city: String
+    :param state: String
+    :param coord_type: String
+    :return: Float (rounded to 2 decimal places)
+    """
+    try:
+        if isinstance(coord, (str, int)):
+            coord = float(coord)
+
+        if not isinstance(coord, float):
+            raise TypeError
+        return round(coord, 2)
+
+    except (TypeError, ValueError):
+        print('Error rounding {} for {}, {}. Check data type'.format(coord_type, city, state))
+
 def compute_total_distance(road_map):
     # TODO: check done
     """
