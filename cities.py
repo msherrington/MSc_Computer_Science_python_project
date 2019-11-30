@@ -259,15 +259,22 @@ def print_map(best_cycle):
     Print the total cost for the entire cycle
     :param best_cycle: Tuple containing List of Tuples and a Float
     """
-    if not best_cycle:
-        return
-    road_map = best_cycle[0]
-    for i, city in enumerate(road_map):
-        city2 = road_map[(i + 1) % len(road_map)]
-        cost = euclidean_distance(city[-2:], city2[-2:])
-        print('{} to {}: {}'.format(city[0], city2[0], cost))
-    total_distance = best_cycle[1]
-    print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
+
+    try:
+        if not best_cycle:
+            raise TypeError
+        road_map = best_cycle[0]
+        for i, city in enumerate(road_map):
+            city2 = road_map[(i + 1) % len(road_map)]
+            if not len(city) == len(city2) == 4:
+                raise ValueError
+            cost = euclidean_distance(city[-2:], city2[-2:])
+            print('{} to {}: {}'.format(city[0], city2[0], cost))
+        total_distance = best_cycle[1]
+        print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
+
+    except (IndexError, TypeError, ValueError):
+        print('Invalid data, cannot print map')
 
 
 def visualise(road_map):
