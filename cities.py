@@ -279,14 +279,16 @@ def visualise(road_map):
     x_min = 40
     y_max = 50
     y_min = 10
-grid = []
-for i, y in enumerate(range(50, 10-1, -1)):
-    y_axis = [y] if i != 0 else []
-    grid.append(y_axis)
-    for j, x in enumerate(range(40+1, 90+1)):
-        block = x if i == 0 and j != 0 else '-'
-        grid[i].append(block)
-print(*grid, sep='\n')
+
+    grid = []
+    for i, y in enumerate(range(50+1, 10-1, -1)):
+        y_axis = [y] if i != 0 else []
+        grid.append(y_axis)
+        for j, x in enumerate(range(40-1, 90+1)):
+            block = x if i == 0 and j != 0 else '-'
+            grid[i].append(block)
+    print(*grid, sep='\n')
+
 
 def main(file_name=None):
     # TODO: visualisation updates
