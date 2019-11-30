@@ -22,6 +22,16 @@ def road_map_length(road_map):
     return len(road_map)
 
 
+def test_round_coordinates(road_map):
+    coord = road_map[0][2]
+    assert round_coordinates(12.3456789) == pytest.approx(12.34, 0.01)
+    assert round_coordinates(coord) == round(coord, 2)
+    assert round_coordinates(str(coord)) == round(coord, 2)
+    assert round_coordinates(66) == 66.0
+    assert round_coordinates('text_string') is None
+    assert round_coordinates('abc4567') is None
+
+
 def test_compute_total_distance(road_map):
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
 
