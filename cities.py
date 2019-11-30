@@ -10,16 +10,6 @@ import random
 # You must provide good code coverage to catch any errors before we do.
 # We expect to see at least 5 tests for each function that needs to be tested (see above).
 
-# Test types:
-# test output matches whats expected from input
-# test output type matches expected data type
-# test passing nothing in creates a certain error type
-# test number of elements in returned result
-# test element types in returned tuple
-# test different ways to break the function
-# test passing the same variable in twice to a function which takes two discrete arguments
-# test against hardcoded results and against dynamic results
-
 # Style...
 # Use proper indentation and spacing, (check PEP8)
 # Don't repeat code if you can put it in a function and just call the function.

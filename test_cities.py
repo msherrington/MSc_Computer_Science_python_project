@@ -2,6 +2,30 @@ import pytest
 from cities import *
 
 
+# We expect to see at least 5 tests for each function that needs to be tested (see above).
+# Test types:
+# test output matches whats expected from input
+# test output type matches expected data type
+# test passing nothing in creates a certain error type
+# test number of elements in returned result
+# test element types in returned tuple
+# test different ways to break the function
+# test passing the same variable in twice to a function which takes two discrete arguments
+# test against hardcoded results and against dynamic results
+# Test for single element lists
+# Test for single element tuples
+# test negative numbers
+# REQUIRED FUNCTIONS X 8:
+# def read_cities(file_name) - no test
+# def print_cities(road_map) - no test
+# def compute_total_distance(road_map)
+# def swap_cities(road_map, index1, index2)
+# def shift_cities(road_map):
+# def find_best_cycle(road_map) - no test
+# def print_map(road_map) - no test
+# def main() - no test
+
+
 @pytest.fixture
 def file_name():
     return 'test-city-data.txt'
