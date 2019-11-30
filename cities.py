@@ -221,7 +221,8 @@ def find_best_cycle(road_map):
         if count % 2 == 0:
             current_road_map = shift_cities(current_road_map)
         else:
-            index1, index2 = get_two_random_indices(maximum=len(current_road_map)-1)
+            index1 = get_random_index(len(current_road_map)-1)
+            index2 = get_random_index(len(current_road_map)-1)
             cycle = swap_cities(current_road_map, index1, index2)
             if not best_cycle or cycle[1] < best_cycle[1]:
                 current_road_map = cycle[0]
@@ -231,16 +232,18 @@ def find_best_cycle(road_map):
     return best_cycle
 
 
-def get_two_random_indices(maximum):
-    # TODO: catch exceptions
+def get_random_index(maximum):
     """
-    Return two random integers in the range 0 to maximum
+    Return random integers in the range 0 to maximum
     :param maximum: integer
-    :return one, two: integers
+    :return integer
     """
-    one = random.randint(0, maximum)
-    two = random.randint(0, maximum)
-    return one, two
+
+    try:
+        return random.randint(0, maximum)
+
+    except (TypeError, ValueError):
+        print('Invalid number: must be positive integer')
 
 
 def print_map(best_cycle):

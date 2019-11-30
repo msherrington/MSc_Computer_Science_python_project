@@ -52,9 +52,8 @@ def test_shift_cities(road_map):
     assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
-def test_get_two_random_indices(road_map_length):
-    a, b = get_two_random_indices(road_map_length-1)
-    assert 0 < a < road_map_length and 0 < b < road_map_length
+def test_get_random_index(road_map_length):
+    assert 0 <= get_random_index(road_map_length-1) <= road_map_length
 
 
 def test_read_cities(file_name, road_map):
