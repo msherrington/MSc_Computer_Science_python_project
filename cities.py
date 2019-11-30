@@ -124,15 +124,23 @@ def compute_total_distance(road_map):
     :param road_map: List of Quadruples
     :return total_distance: Float
     """
-    total_distance = 0
-    for i, city1 in enumerate(road_map):
-        coords1 = city1[-2:]
-        city2 = road_map[(i + 1) % len(road_map)]
-        coords2 = city2[-2:]
-        distance = euclidean_distance(coords1, coords2)
-        total_distance += distance
 
-    return total_distance
+    try:
+        if not isinstance(road_map, list):
+            raise TypeError
+
+        total_distance = 0
+        for i, city1 in enumerate(road_map):
+            city2 = road_map[(i + 1) % len(road_map)]
+            if not len(city1) == len(city2) == 4:
+                raise ValueError
+            location1 = city1[-2:]
+            location2 = city2[-2:]
+            total_distance += euclidean_distance(location1, location2)
+        return total_distance
+
+    except (TypeError, ValueError):
+        print('Cannot compute total distances, check cities data')
 
 
 def euclidean_distance(coords1, coords2):
