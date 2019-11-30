@@ -204,32 +204,37 @@ def shift_cities(road_map):
 
 
 def find_best_cycle(road_map):
-    # TODO: check logic and update docstring
-    # TODO: catch exceptions
+    # TODO: check done
     """
-    Using a combination of `swap_cities` and `shift_cities`, 
-    try `10000` swaps/shifts, and each time keep the best cycle found so far. 
-    After `10000` swaps/shifts, return the best cycle found so far.
-    Use randomly generated indices for swapping.
+    Perform 10,000 iterations of either shifting or swapping indices in road_map
+    Swapping occurs using randomly generated indices
+    Calculate the total distance after each shift
+    Each iteration uses the shortest road_map found so far
+    :param road_map: List of Quadruples
+    :return best_cycle: Tuple containing a List of Quadruples and a Float
     """
-    if not road_map:
-        return
-    current_road_map = road_map
-    best_cycle = None
-    count = 10000
-    while count > 0:
-        if count % 2 == 0:
-            current_road_map = shift_cities(current_road_map)
-        else:
-            index1 = get_random_index(len(current_road_map)-1)
-            index2 = get_random_index(len(current_road_map)-1)
-            cycle = swap_cities(current_road_map, index1, index2)
-            if not best_cycle or cycle[1] < best_cycle[1]:
-                current_road_map = cycle[0]
-                best_cycle = cycle
-        count -= 1
 
-    return best_cycle
+    try:
+        if not road_map:
+            raise ValueError
+        current_road_map = road_map
+        best_cycle = None
+        count = 10000
+        while count > 0:
+            if count % 2 == 0:
+                current_road_map = shift_cities(current_road_map)
+            else:
+                index1 = get_random_index(len(current_road_map)-1)
+                index2 = get_random_index(len(current_road_map)-1)
+                cycle = swap_cities(current_road_map, index1, index2)
+                if not best_cycle or cycle[1] < best_cycle[1]:
+                    current_road_map = cycle[0]
+                    best_cycle = cycle
+            count -= 1
+        return best_cycle
+
+    except(TypeError, ValueError):
+        print('Error finding best cycle')
 
 
 def get_random_index(maximum):
