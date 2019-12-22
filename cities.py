@@ -51,7 +51,7 @@ def read_cities(file_name):
     except ValueError:
         print('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
         if not file_name.endswith('.txt'):
-            print('Try using a text file')
+            print('HINT: Try using a text file')
 
 
 def print_cities(road_map):
@@ -105,7 +105,7 @@ def round_coordinates(coord, city, state, coord_type):
 
 
 def compute_total_distance(road_map):
-    # TODO: catch exceptions
+    # TODO: check done
     """
     Iterate over road_map data, sum the distance between each
     consecutive city (including first and last cities, to form a cycle)
@@ -115,16 +115,16 @@ def compute_total_distance(road_map):
     """
 
     try:
-        if not isinstance(road_map, list):
+        if not isinstance(road_map, list) or len(road_map) == 0:
             raise TypeError
 
         total_distance = 0
-        for i, city1 in enumerate(road_map):
-            city2 = road_map[(i + 1) % len(road_map)]
-            if not len(city1) == len(city2) == 4:
+        for i, city in enumerate(road_map):
+            next_city = road_map[(i + 1) % len(road_map)]
+            if not len(city) == len(next_city) == 4:
                 raise ValueError
-            location1 = city1[-2:]
-            location2 = city2[-2:]
+            location1 = city[-2:]
+            location2 = next_city[-2:]
             total_distance += euclidean_distance(location1, location2)
         return total_distance
 
@@ -149,11 +149,11 @@ def euclidean_distance(location1, location2):
         return sqrt((lon1 - lon2)**2 + (lat1 - lat2)**2)
 
     except (TypeError, ValueError):
-        print('Error calculating euclidean_distance, check location data')
+        print('Error calculating euclidean_distance, check coordinates data')
 
 
 def swap_cities(road_map, index1, index2):
-    # TODO: catch exceptions
+    # TODO: check done
     """
     Swap the elements at index1 and index2 in the road_map list
     Calculate total distance between cities in amended road_map
@@ -164,7 +164,14 @@ def swap_cities(road_map, index1, index2):
     """
 
     try:
+        indices = [index1, index2]
+        if not all(isinstance(i, int) for i in indices) or not isinstance(road_map, list):
+            raise TypeError
+
         new_map = road_map[:]
+        if not all(new_map[i] and i >= 0 for i in indices):
+            raise IndexError
+
         if index1 != index2:
             new_map[index1], new_map[index2] = new_map[index2], new_map[index1]
         distance = compute_total_distance(new_map)
@@ -172,7 +179,9 @@ def swap_cities(road_map, index1, index2):
             return tuple((new_map, distance))
 
     except TypeError:
-        print('Error when swapping cities, check data')
+        print('Data error. Check road_map and indices data types')
+    except IndexError:
+        print('Index cannot be negative, or higher than length of road_map list')
 
 
 def shift_cities(road_map):
@@ -255,11 +264,11 @@ def print_map(best_cycle):
             raise TypeError
         road_map = best_cycle[0]
         for i, city in enumerate(road_map):
-            city2 = road_map[(i + 1) % len(road_map)]
-            if not len(city) == len(city2) == 4:
+            next_city = road_map[(i + 1) % len(road_map)]
+            if not len(city) == len(next_city) == 4:
                 raise ValueError
-            cost = euclidean_distance(city[-2:], city2[-2:])
-            print('{} to {}: {}'.format(city[0], city2[0], cost))
+            cost = euclidean_distance(city[-2:], next_city[-2:])
+            print('{} to {}: {}'.format(city[0], next_city[0], cost))
         total_distance = best_cycle[1]
         print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
 
