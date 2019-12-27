@@ -2,10 +2,12 @@ from math import sqrt
 import random
 import matplotlib.pyplot as plt
 
-
 # CHECKLIST
 
-# TODO: use try/except clauses for various error types! Don't let the tests fail unexpectedly.
+# TODO: Raise Errors, don't catch them!!
+# TODO: test for raised errors
+# TODO: check resources of lessons 6 and 7
+
 
 # You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
 # You must provide good code coverage to catch any errors before we do.
@@ -256,7 +258,7 @@ def print_map(best_cycle):
     """
     Print the connection and cost between each city
     Print the total cost for the entire cycle
-    :param best_cycle: Tuple containing List of Tuples and a Float
+    :param best_cycle: Tuple containing List of Quadruples and a Float
     """
 
     try:
@@ -277,24 +279,26 @@ def print_map(best_cycle):
 
 
 def visualise(road_map):
-    # TODO: docstring
     # TODO: raise exceptions
-    """ either graphically print the given road_map or will open a GUI window with the drawing
-    of the road_map. Also, extend the functionality of your main function so that it provides
-    visualisation of the best route  when found. You do not need to test the visualise function.
+    """
+    Graphically display the given road_map cycle
+    as a popup display within the IDE and
+    saved as a .png file within the project directory
+    :param road_map: List of Quadruples
     """
 
     x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
     y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
 
-    # Append first location again to complete the cycle
+    # Append first coordinates again to complete the cycle
     x.append(x[0])
     y.append(y[0])
 
     plt.plot(x, y, '-b')  # plot lines
     plt.plot(x, y, 'rD')  # plot circles
     for i in range(len(x)-1):
-        plt.annotate(str(i+1), (x[i], y[i]))
+        plt.annotate(str(i+1), (x[i], y[i]))  # numerical labels
+
     plt.title('Travelling Salesman\'s Road Map')
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
@@ -306,8 +310,9 @@ def main():
     # TODO: raise errors (?) - maybe not
     """
     Open specified file by name
-    Print city data
+    Format and print city data
     Calculate "best" cycle and print it
+    Display the best cycle as a plotted graph
     """
 
     file_name = input('Enter the name of the file to read from: ')
