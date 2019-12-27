@@ -278,9 +278,8 @@ def print_map(best_cycle):
 
 
 def visualise(road_map):
-    # TODO: logic
-    # TODO: Dry up repeated code
-    # TODO: catch exceptions
+    # TODO: docstring
+    # TODO: raise exceptions
     """ either graphically print the given road_map or will open a GUI window with the drawing
     of the road_map. Also, extend the functionality of your main function so that it provides
     visualisation of the best route  when found. You do not need to test the visualise function.
@@ -302,21 +301,6 @@ def visualise(road_map):
     plt.ylabel('Latitude')
     plt.savefig("road_map.png")
     plt.show()
-
-    # print('grid')
-    # x_max = 90
-    # x_min = 40
-    # y_max = 50
-    # y_min = 10
-    #
-    # grid = []
-    # for i, y in enumerate(range(50+1, 10-1, -1)):
-    #     y_axis = [y] if i != 0 else []
-    #     grid.append(y_axis)
-    #     for j, x in enumerate(range(40-1, 90+1)):
-    #         block = x if i == 0 and j != 0 else '-'
-    #         grid[i].append(block)
-    # print(*grid, sep='\n')
 
 
 def main():
