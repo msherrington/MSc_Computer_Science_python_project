@@ -289,10 +289,8 @@ def visualise(road_map):
     y = []
     for location in road_map:
         state, city, lon, lat = location
-        lon = round_coordinates(lon, city, state, 'longitude')
-        lat = round_coordinates(lat, city, state, 'latitude')
-        x.append(lon)
-        y.append(lat)
+        x.append(round_coordinates(lon, city, state, 'longitude'))
+        y.append(round_coordinates(lat, city, state, 'latitude'))
     x.append(x[0])
     y.append(y[0])
     plt.plot(x, y)
