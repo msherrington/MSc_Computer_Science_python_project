@@ -40,8 +40,8 @@ def read_cities(file_name):
         with open(file_name) as infile:
             for line in infile:
                 location = line.replace('\n', '').split('\t')
-                state, city, lon, lat = location
-                quadruple = (state, city, float(lon), float(lat))
+                state, city, lat, lon = location
+                quadruple = (state, city, float(lat), float(lon))
                 road_map.append(quadruple)
         return road_map
 
@@ -59,7 +59,7 @@ def print_cities(road_map):
     # TODO: check done
     """
     Unpack city data from road_map
-    Format longitude and latitude to 2 decimal places
+    Format latitude and longitude to 2 decimal places
     Print a list of cities and their coordinates
     :param road_map: List of Quadruples
     """
@@ -72,11 +72,11 @@ def print_cities(road_map):
             raise TypeError
 
         for location in road_map:
-            state, city, lon, lat = location
-            lon = round_coordinates(lon, city, state, 'longitude')
+            state, city, lat, lon = location
             lat = round_coordinates(lat, city, state, 'latitude')
-            if lon and lat:
-                print('{}, {}: {}, {}'.format(city, state, lon, lat))
+            lon = round_coordinates(lon, city, state, 'longitude')
+            if lat and lon:
+                print('{}, {}: {}, {}'.format(city, state, lat, lon))
         print('='*40)
 
     except (TypeError, ValueError):
@@ -86,7 +86,7 @@ def print_cities(road_map):
 def round_coordinates(coord, city, state, coord_type):
     # TODO: check done!
     """
-    Takes a longitude or latitude
+    Takes a latitude or longitude
     Convert string to float if necessary
     Return the float rounded to 2 decimal places
     :param coord: Float or String
@@ -137,7 +137,7 @@ def euclidean_distance(location1, location2):
     # TODO: check done
     """
     Calculate the Euclidean distance between 2 cities
-    Accept long/lat coordinates of (x1,y1) and (x2,y2)
+    Accept lat/lon coordinates of (x1,y1) and (x2,y2)
     Return formula sqrt((x1-x2)**2 + (y1-y2)**2)
     :param location1: Tuple containing 2 Float elements
     :param location2: Tuple containing 2 Float elements
@@ -145,9 +145,9 @@ def euclidean_distance(location1, location2):
     """
 
     try:
-        lon1, lat1 = location1
-        lon2, lat2 = location2
-        return sqrt((lon1 - lon2)**2 + (lat1 - lat2)**2)
+        lat1, lon1 = location1
+        lat2, lon2 = location2
+        return sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
 
     except (TypeError, ValueError):
         print('Error calculating euclidean_distance, check coordinates data')
@@ -286,8 +286,8 @@ def visualise(road_map):
     visualisation of the best route  when found. You do not need to test the visualise function.
     """
 
-    x = [round_coordinates(location[2], location[1], location[0], 'longitude') for location in road_map]
-    y = [round_coordinates(location[3], location[1], location[0], 'latitude') for location in road_map]
+    x = [round_coordinates(location[3], location[1], location[0], 'latitude') for location in road_map]
+    y = [round_coordinates(location[2], location[1], location[0], 'longitude') for location in road_map]
 
     # Append first location again to complete the cycle
     x.append(x[0])
