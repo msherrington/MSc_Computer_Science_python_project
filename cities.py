@@ -73,8 +73,8 @@ def print_cities(road_map):
 
         for location in road_map:
             state, city, lat, lon = location
-            lat = round_coordinates(lat, city, state, 'latitude')
-            lon = round_coordinates(lon, city, state, 'longitude')
+            lat = round_coordinates(lat, city, state)
+            lon = round_coordinates(lon, city, state)
             if lat and lon:
                 print('{}, {}: {}, {}'.format(city, state, lat, lon))
         print('='*40)
@@ -83,7 +83,7 @@ def print_cities(road_map):
         print('Error printing cities, please check data format')
 
 
-def round_coordinates(coord, city, state, coord_type):
+def round_coordinates(coord, city, state):
     # TODO: check done!
     """
     Takes a latitude or longitude
@@ -92,7 +92,6 @@ def round_coordinates(coord, city, state, coord_type):
     :param coord: Float or String
     :param city: String
     :param state: String
-    :param coord_type: String
     :return: Float (rounded to 2 decimal places)
     """
 
@@ -102,7 +101,7 @@ def round_coordinates(coord, city, state, coord_type):
         return round(coord, 2)
 
     except (TypeError, ValueError):
-        print('Error rounding {} for {}, {}. Check data type'.format(coord_type, city, state))
+        print('Error rounding {} for {}, {}. Check data type'.format(coord, city, state))
 
 
 def compute_total_distance(road_map):
@@ -285,8 +284,8 @@ def visualise(road_map):
     visualisation of the best route  when found. You do not need to test the visualise function.
     """
 
-    x = [round_coordinates(location[3], location[1], location[0], 'latitude') for location in road_map]
-    y = [round_coordinates(location[2], location[1], location[0], 'longitude') for location in road_map]
+    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
+    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
 
     # Append first location again to complete the cycle
     x.append(x[0])
