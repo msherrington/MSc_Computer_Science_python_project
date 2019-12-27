@@ -301,6 +301,7 @@ def visualise(road_map):
     plt.title('Travelling Salesman\'s Road Map')
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
+    plt.savefig("road_map.png")
     plt.show()
 
     # print('grid')
