@@ -293,6 +293,8 @@ def visualise(road_map):
         lat = round_coordinates(lat, city, state, 'latitude')
         x.append(lon)
         y.append(lat)
+    x.append(x[0])
+    y.append(y[0])
     plt.plot(x, y)
     plt.show()
 
