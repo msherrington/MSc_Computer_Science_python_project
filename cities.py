@@ -285,19 +285,18 @@ def visualise(road_map):
     of the road_map. Also, extend the functionality of your main function so that it provides
     visualisation of the best route  when found. You do not need to test the visualise function.
     """
-    x, y, z = [], [], []
-    for location in road_map:
-        state, city, lon, lat = location
-        x.append(round_coordinates(lon, city, state, 'longitude'))
-        y.append(round_coordinates(lat, city, state, 'latitude'))
-        z.append('{}, {}'.format(city, state))
+
+    x = [round_coordinates(location[2], location[1], location[0], 'longitude') for location in road_map]
+    y = [round_coordinates(location[3], location[1], location[0], 'latitude') for location in road_map]
+
+    # Append first location again to complete the cycle
     x.append(x[0])
     y.append(y[0])
-    z.append(z[0])
-    plt.plot(x, y)
-    plt.plot(x, y, 'ro')
-    for i in range(len(x)):
-        plt.annotate(z[i], (x[i], y[i]))
+
+    plt.plot(x, y, '-b')  # plot lines
+    plt.plot(x, y, 'rD')  # plot circles
+    for i in range(len(x)-1):
+        plt.annotate(str(i+1), (x[i], y[i]))
     plt.title('Travelling Salesman\'s Road Map')
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
