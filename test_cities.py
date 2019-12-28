@@ -106,3 +106,12 @@ def test_read_cities(file_name, road_map):
     """
     cities = read_cities(file_name)
     assert set(cities).intersection(set(road_map))
+
+
+def test_can_be_floated():
+    assert can_be_floated(5)
+    assert can_be_floated('5')
+    assert can_be_floated(5.0)
+    assert can_be_floated('5.0')
+    assert not can_be_floated('text string')
+    assert not can_be_floated([5])
