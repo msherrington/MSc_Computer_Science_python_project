@@ -285,21 +285,21 @@ def visualise(road_map):
     :param road_map: List of Quadruples
     """
 
-    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
-    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
+    plt.title('Travelling Salesman\'s Road Map')
 
-    # Append first coordinates again to complete the cycle
+    plt.xlabel('Longitude')
+    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
     x.append(x[0])
+
+    plt.ylabel('Latitude')
+    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
     y.append(y[0])
 
-    plt.plot(x, y, '-b')  # plot lines
-    plt.plot(x, y, 'rD')  # plot circles
+    plt.plot(x, y, 'rD')  # vertices
+    plt.plot(x, y, '-b')  # edges
     for i in range(len(x)-1):
-        plt.annotate(str(i+1), (x[i], y[i]))  # numerical labels
+        plt.annotate(str(i+1), (x[i], y[i]))  # vertex labels
 
-    plt.title('Travelling Salesman\'s Road Map')
-    plt.xlabel('Longitude')
-    plt.ylabel('Latitude')
     plt.savefig("road_map.png")
     plt.show()
 
