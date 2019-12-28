@@ -26,9 +26,6 @@ from cities import *
 # def main() - no test
 
 
-@pytest.fixture
-def file_name():
-    return 'test-city-data.txt'
 
 
 @pytest.fixture
@@ -99,12 +96,12 @@ def test_get_random_index(road_map):
     assert 0 <= get_random_index(len(road_map)-1) <= len(road_map)
 
 
-def test_read_cities(file_name, road_map):
+def test_read_cities(road_map):
     """
     Included this test (even though it's not required) to
     check test data is being read from the file correctly
     """
-    cities = read_cities(file_name)
+    cities = read_cities('test-city-data.txt')
     assert set(cities).intersection(set(road_map))
 
 
