@@ -41,6 +41,10 @@ def road_map():
     ]
 
 
+def check_for_raised_error(error_type, func, param, message):
+    with pytest.raises(error_type) as e:
+        func(param)
+    assert str(e.value) == message
 
 
 def test_round_coordinates(road_map):
@@ -58,22 +62,22 @@ def test_compute_total_distance(road_map):
     """ REQUIRED """
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
     assert isinstance(compute_total_distance(road_map), float)
-    with pytest.raises(IndexError) as e:
-        compute_total_distance([])
-    assert str(e.value) == 'The road_map list cannot be empty'
-    with pytest.raises(TypeError) as e:
-        compute_total_distance('California')
-    assert str(e.value) == 'The road_map must be a list'
-    with pytest.raises(TypeError) as e:
-        compute_total_distance(['California'])
-    assert str(e.value) == 'Each road_map element must be a tuple'
-    with pytest.raises(ValueError) as e:
-        compute_total_distance([('California', 'Sacramento')])
-    assert str(e.value) == 'Each tuple in the road_map must contain 4 elements'
     assert compute_total_distance([('California', 'Sacramento', 38.555605, -121.468926)]) == 0.0
-    with pytest.raises(TypeError) as e:
-        compute_total_distance([(38.555605, -121.468926, 'California', 'Sacramento')])
-    assert str(e.value) == 'Coordinates must be of type float'
+    check_for_raised_error(IndexError, compute_total_distance, [], 'The road_map list cannot be empty')
+    check_for_raised_error(TypeError, compute_total_distance, 'California', 'The road_map must be a list')
+    check_for_raised_error(TypeError, compute_total_distance, ['California'], 'Each road_map element must be a tuple')
+    check_for_raised_error(
+        ValueError,
+        compute_total_distance,
+        [('California', 'Sacramento')],
+        'Each tuple in the road_map must contain 4 elements'
+    )
+    check_for_raised_error(
+        TypeError,
+        compute_total_distance,
+        [(38.555605, -121.468926, 'California', 'Sacramento')],
+        'Coordinates must be of type float'
+    )
 
 
 def test_euclidean_distance(road_map):
