@@ -116,22 +116,24 @@ def compute_total_distance(road_map):
     :return total_distance: Float
     """
 
-    try:
-        if not isinstance(road_map, list) or len(road_map) == 0:
-            raise TypeError
+    if not isinstance(road_map, list):
+        raise TypeError('The road_map must be a list')
+    if len(road_map) == 0:
+        raise IndexError('The road_map list cannot be empty')
 
-        total_distance = 0
-        for i, city in enumerate(road_map):
-            next_city = road_map[(i + 1) % len(road_map)]
-            if not len(city) == len(next_city) == 4:
-                raise ValueError
-            location1 = city[-2:]
-            location2 = next_city[-2:]
-            total_distance += euclidean_distance(location1, location2)
-        return total_distance
-
-    except (TypeError, ValueError):
-        print('Cannot compute total distances, check cities data')
+    total_distance = 0
+    for i, city in enumerate(road_map):
+        next_city = road_map[(i + 1) % len(road_map)]
+        if not all(isinstance(c, tuple) for c in [city, next_city]):
+            raise TypeError('Each road_map element must be a tuple')
+        if not len(city) == len(next_city) == 4:
+            raise ValueError('Each tuple in the road_map must contain 4 elements')
+        if not all(isinstance(c, float) for c in [city[2], city[3], next_city[2], next_city[3]]):
+            raise TypeError('Coordinates must be of type float')
+        location1 = city[-2:]
+        location2 = next_city[-2:]
+        total_distance += euclidean_distance(location1, location2)
+    return total_distance
 
 
 def euclidean_distance(location1, location2):
