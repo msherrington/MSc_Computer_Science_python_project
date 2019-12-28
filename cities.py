@@ -85,6 +85,22 @@ def print_cities(road_map):
         print('Error printing cities, please check data format')
 
 
+def can_be_floated(value):
+    """
+    Check if a datatype can be floated without errors
+    :param value: any datatype
+    :return: Boolean
+    """
+
+    if not isinstance(value, (str, int, float)):
+        return False
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
+
+
 def round_coordinates(coord, city, state):
     # TODO: check done!
     """
