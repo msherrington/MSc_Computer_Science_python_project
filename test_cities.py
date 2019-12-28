@@ -41,9 +41,6 @@ def road_map():
     ]
 
 
-@pytest.fixture
-def road_map_length(road_map):
-    return len(road_map)
 
 
 def test_round_coordinates(road_map):
@@ -76,8 +73,8 @@ def test_shift_cities(road_map):
     assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
-def test_get_random_index(road_map_length):
-    assert 0 <= get_random_index(road_map_length-1) <= road_map_length
+def test_get_random_index(road_map):
+    assert 0 <= get_random_index(len(road_map)-1) <= len(road_map)
 
 
 def test_read_cities(file_name, road_map):
