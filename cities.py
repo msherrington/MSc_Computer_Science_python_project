@@ -205,7 +205,6 @@ def shift_cities(road_map):
 
 
 def find_best_cycle(road_map):
-    # TODO: check done
     """
     Perform 10,000 iterations of either shifting or swapping indices in road_map
     Swapping occurs using randomly generated indices
@@ -220,17 +219,16 @@ def find_best_cycle(road_map):
             raise ValueError
         current_road_map = road_map
         best_cycle = None
+        maximum = len(road_map) - 1
         count = 10000
         while count > 0:
-            if count % 2 == 0:
-                current_road_map = shift_cities(current_road_map)
-            else:
-                index1 = get_random_index(len(current_road_map)-1)
-                index2 = get_random_index(len(current_road_map)-1)
-                cycle = swap_cities(current_road_map, index1, index2)
-                if not best_cycle or cycle[1] < best_cycle[1]:
-                    current_road_map = cycle[0]
-                    best_cycle = cycle
+            temp_road_map = shift_cities(current_road_map) if count % 2 != 0 else current_road_map
+            index1 = get_random_index(maximum)
+            index2 = get_random_index(maximum)
+            cycle = swap_cities(temp_road_map, index1, index2)
+            if not best_cycle or cycle[1] < best_cycle[1]:
+                best_cycle = cycle
+                current_road_map = cycle[0]
             count -= 1
         return best_cycle
 
