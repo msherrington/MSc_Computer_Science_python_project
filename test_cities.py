@@ -49,13 +49,13 @@ def assert_for_raised_error(error_type, func, params, message):
 
 def test_round_coordinates(road_map):
     coord = road_map[0][2]
-    city, state, coord_type = 'NY', 'NY', 'latitude'
-    assert round_coordinates(12.3456789, city, state, coord_type) == pytest.approx(12.34, 0.01)
-    assert round_coordinates(coord, city, state, coord_type) == round(coord, 2)
-    assert round_coordinates(str(coord), city, state, coord_type) == round(coord, 2)
-    assert round_coordinates(66, city, state, coord_type) == 66.0
-    assert round_coordinates('text_string', city, state, coord_type) is None
-    assert round_coordinates('abc4567', city, state, coord_type) is None
+    rounded = round(coord, 2)
+    assert round_coordinates(coord) == rounded
+    assert round_coordinates(str(coord)) == rounded
+    assert round_coordinates(66) == 66.0
+    assert round_coordinates(12.3456789) == pytest.approx(12.34, 0.01)
+    assert_for_raised_error(ValueError, round_coordinates, ['string'], 'Cannot float coordinate')
+    assert_for_raised_error(TypeError, round_coordinates, [[]], 'Coordinate must be string or number')
 
 
 def test_compute_total_distance(road_map):
