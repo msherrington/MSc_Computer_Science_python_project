@@ -101,29 +101,22 @@ def can_be_floated(value):
         return False
 
 
-def round_coordinates(coord, city, state):
-    # TODO: check done!
+def round_coordinates(coord):
     """
     Takes a latitude or longitude
-    Convert string to float if necessary
-    Return the float rounded to 2 decimal places
-    :param coord: Float or String
-    :param city: String
-    :param state: String
+    Return a float rounded to 2 decimal places
+    :param coord: Number or String
     :return: Float (rounded to 2 decimal places)
     """
 
-    try:
-        if isinstance(coord, (str, int)):
-            coord = float(coord)
-        return round(coord, 2)
-
-    except (TypeError, ValueError):
-        print('Error rounding {} for {}, {}. Check data type'.format(coord, city, state))
+    if not isinstance(coord, (str, int, float)):
+        raise TypeError('Coordinate must be string or number')
+    if not can_be_floated(coord):
+        raise ValueError('Cannot float coordinate')
+    return round(float(coord), 2)
 
 
 def compute_total_distance(road_map):
-    # TODO: check done
     """
     Iterate over road_map data, sum the distance between each
     consecutive city (including first and last cities, to form a cycle)
