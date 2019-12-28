@@ -41,9 +41,9 @@ def road_map():
     ]
 
 
-def check_for_raised_error(error_type, func, param, message):
+def assert_for_raised_error(error_type, func, params, message):
     with pytest.raises(error_type) as e:
-        func(param)
+        func(*params)
     assert str(e.value) == message
 
 
@@ -63,19 +63,19 @@ def test_compute_total_distance(road_map):
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
     assert isinstance(compute_total_distance(road_map), float)
     assert compute_total_distance([('California', 'Sacramento', 38.555605, -121.468926)]) == 0.0
-    check_for_raised_error(IndexError, compute_total_distance, [], 'The road_map list cannot be empty')
-    check_for_raised_error(TypeError, compute_total_distance, 'California', 'The road_map must be a list')
-    check_for_raised_error(TypeError, compute_total_distance, ['California'], 'Each road_map element must be a tuple')
-    check_for_raised_error(
+    assert_for_raised_error(IndexError, compute_total_distance, [[]], 'The road_map list cannot be empty')
+    assert_for_raised_error(TypeError, compute_total_distance, ['California'], 'The road_map must be a list')
+    assert_for_raised_error(TypeError, compute_total_distance, [['California']], 'Each road_map element must be a tuple')
+    assert_for_raised_error(
         ValueError,
         compute_total_distance,
-        [('California', 'Sacramento')],
+        [[('California', 'Sacramento')]],
         'Each tuple in the road_map must contain 4 elements'
     )
-    check_for_raised_error(
+    assert_for_raised_error(
         TypeError,
         compute_total_distance,
-        [(38.555605, -121.468926, 'California', 'Sacramento')],
+        [[(38.555605, -121.468926, 'California', 'Sacramento')]],
         'Coordinates must be of type float'
     )
 
