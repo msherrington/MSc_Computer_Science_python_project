@@ -1,12 +1,14 @@
-import matplotlib.pyplot as plt
 import os.path
 
 from math import sqrt
+from matplotlib import pyplot as plt
+
 from services import (
     can_be_floated,
     random_index,
     round_coordinates,
-    validate_road_map
+    validate_road_map,
+    validate_road_map_data
 )
 
 # CHECKLIST
