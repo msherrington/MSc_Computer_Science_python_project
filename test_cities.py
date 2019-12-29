@@ -152,8 +152,15 @@ def test_shift_cities(road_map, road_map_errors):
     assert_for_raised_error(IndexError, shift_cities, [[]], road_map_errors['empty'])
 
 
-def test_get_random_index(road_map):
-    assert 0 <= get_random_index(len(road_map)-1) <= len(road_map)
+def test_random_index(road_map):
+    maximum = len(road_map)-1
+    random = random_index(maximum)
+    assert random <= len(road_map)
+    assert 0 <= random
+    assert isinstance(random, int)
+    assert_for_raised_error(TypeError, random_index, [23.0], 'Maximum must be an integer')
+    assert_for_raised_error(TypeError, random_index, ['string'], 'Maximum must be an integer')
+    assert_for_raised_error(ValueError, random_index, [-2], 'Maximum must be a positive integer')
 
 
 def test_read_cities(road_map):
