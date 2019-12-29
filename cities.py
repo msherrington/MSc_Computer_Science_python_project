@@ -1,10 +1,9 @@
 import os.path
 
-from math import sqrt
 from matplotlib import pyplot as plt
-
 from services import (
     can_be_floated,
+    euclidean_distance,
     random_index,
     round_coordinates,
     validate_road_map,
@@ -108,28 +107,6 @@ def compute_total_distance(road_map):
         location2 = next_city[-2:]
         total_distance += euclidean_distance(location1, location2)
     return total_distance
-
-
-def euclidean_distance(location1, location2):
-    """
-    Calculate the Euclidean distance between 2 cities
-    Accept lat/lon coordinates of (x1,y1) and (x2,y2)
-    Return formula sqrt((x1-x2)**2 + (y1-y2)**2)
-    :param location1: Tuple containing 2 Float elements
-    :param location2: Tuple containing 2 Float elements
-    :return: Float
-    """
-
-    locations = [location1, location2]
-    if not all(isinstance(x, (tuple, list)) for x in locations):
-        raise TypeError('Coordinates must be packed in tuples or lists')
-    if not all(len(x) == 2 for x in locations):
-        raise ValueError('Exactly two elements required in location tuple')
-    lat1, lon1 = location1
-    lat2, lon2 = location2
-    if not all(isinstance(x, (float, int)) for x in [lat1, lon1, lat2, lon2]):
-        raise TypeError('Coordinates must be a number')
-    return sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
 
 
 def swap_cities(road_map, index1, index2):

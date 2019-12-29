@@ -1,13 +1,13 @@
 import pytest
 from cities import (
     compute_total_distance,
-    euclidean_distance,
     read_cities,
     shift_cities,
     swap_cities,
 )
 from services import (
     can_be_floated,
+    euclidean_distance,
     random_index,
     round_coordinates,
     validate_road_map,

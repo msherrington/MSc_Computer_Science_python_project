@@ -1,5 +1,7 @@
 import random
 
+from math import sqrt
+
 
 def can_be_floated(value):
     """
@@ -15,6 +17,28 @@ def can_be_floated(value):
         return True
     except ValueError:
         return False
+
+
+def euclidean_distance(location1, location2):
+    """
+    Calculate the Euclidean distance between 2 cities
+    Accept lat/lon coordinates of (x1,y1) and (x2,y2)
+    Return formula sqrt((x1-x2)**2 + (y1-y2)**2)
+    :param location1: Tuple containing 2 Float elements
+    :param location2: Tuple containing 2 Float elements
+    :return: Float
+    """
+
+    locations = [location1, location2]
+    if not all(isinstance(x, (tuple, list)) for x in locations):
+        raise TypeError('Coordinates must be packed in tuples or lists')
+    if not all(len(x) == 2 for x in locations):
+        raise ValueError('Exactly two elements required in location tuple')
+    lat1, lon1 = location1
+    lat2, lon2 = location2
+    if not all(isinstance(x, (float, int)) for x in [lat1, lon1, lat2, lon2]):
+        raise TypeError('Coordinates must be a number')
+    return sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
 
 
 def random_index(maximum):
