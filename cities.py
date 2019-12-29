@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import os.path
-import random
 
 from services import Services
 from math import sqrt
@@ -198,8 +197,8 @@ def find_best_cycle(road_map):
         count = 10000
         while count > 0:
             temp_road_map = shift_cities(current_road_map) if count % 2 != 0 else current_road_map
-            index1 = get_random_index(maximum)
-            index2 = get_random_index(maximum)
+            index1 = Services().random_index(maximum)
+            index2 = Services().random_index(maximum)
             cycle = swap_cities(temp_road_map, index1, index2)
             if not best_cycle or cycle[1] < best_cycle[1]:
                 best_cycle = cycle
@@ -209,20 +208,6 @@ def find_best_cycle(road_map):
 
     except(TypeError, ValueError):
         print('Error finding best cycle')
-
-
-def get_random_index(maximum):
-    """
-    Return random integers in the range 0 to maximum
-    :param maximum: integer
-    :return integer
-    """
-
-    try:
-        return random.randint(0, maximum)
-
-    except (TypeError, ValueError):
-        print('Invalid number: must be positive integer')
 
 
 def print_map(best_cycle):

@@ -1,3 +1,5 @@
+import random
+
 class Services:
     """
     Service for reusable utility methods
@@ -18,6 +20,20 @@ class Services:
             return True
         except ValueError:
             return False
+
+    @staticmethod
+    def random_index(maximum):
+        """
+        Return random integers in the range 0 to maximum
+        :param maximum: integer
+        :return integer
+        """
+
+        try:
+            return random.randint(0, maximum)
+
+        except (TypeError, ValueError):
+            print('Invalid number: must be positive integer')
 
     @staticmethod
     def round_coordinates(coord):
