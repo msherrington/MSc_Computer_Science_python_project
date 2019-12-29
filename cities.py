@@ -12,14 +12,12 @@ from services import (
 
 # CHECKLIST
 
-# You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
 # You must provide good code coverage to catch any errors before we do.
 # We expect to see at least 5 tests for each function that needs to be tested (see above).
 
 # Style...
 # Use proper indentation and spacing, (check PEP8)
 # Don't repeat code if you can put it in a function and just call the function.
-# Try to avoid redundancy (such as the beginner's if better == True).
 
 # REQUIRED FUNCTIONS X 8:
 # def read_cities(file_name) - no test
@@ -46,11 +44,11 @@ def read_cities(file_name):
     """
 
     if not isinstance(file_name, str):
-        raise TypeError('Filename must be a string, not a {}'.format(type(file_name)))
+        raise TypeError('File name must be a string, not a {}'.format(type(file_name)))
     if not os.path.exists(file_name):
         message = 'File "{}" not found.'.format(file_name)
         if '.' not in file_name:
-            message += ' Remember to add the file suffix e.g. "filename.txt"'
+            message += ' Remember to add the file suffix e.g. "file_name.txt"'
         raise FileNotFoundError(message)
 
     road_map = []
@@ -62,8 +60,7 @@ def read_cities(file_name):
             state, city, lat, lon = location
             if not all(can_be_floated(x) for x in [lat, lon]):
                 raise ValueError('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
-            quadruple = (state, city, float(lat), float(lon))
-            road_map.append(quadruple)
+            road_map.append((state, city, float(lat), float(lon)))
     return road_map
 
 
@@ -103,9 +100,7 @@ def compute_total_distance(road_map):
     total_distance = 0
     for i, city in enumerate(road_map):
         next_city = road_map[(i + 1) % len(road_map)]
-        location1 = city[-2:]
-        location2 = next_city[-2:]
-        total_distance += euclidean_distance(location1, location2)
+        total_distance += euclidean_distance(city[-2:], next_city[-2:])
     return total_distance
 
 
@@ -208,11 +203,11 @@ def visualise(road_map):
     plt.title('Travelling Salesman\'s Road Map')
 
     plt.xlabel('Longitude')
-    x = [round_coordinates(lon) for state, city, lat, lon in road_map]
+    x = [round_coordinates(rm[3]) for rm in road_map]
     x.append(x[0])
 
     plt.ylabel('Latitude')
-    y = [round_coordinates(lat) for state, city, lat, lon in road_map]
+    y = [round_coordinates(rm[2]) for rm in road_map]
     y.append(y[0])
 
     plt.plot(x, y, 'rD')  # vertices
