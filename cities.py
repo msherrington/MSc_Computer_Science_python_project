@@ -232,22 +232,23 @@ def print_map(best_cycle):
 
 
 def visualise(road_map):
-    # TODO: raise exceptions
     """
     Graphically display the given road_map cycle
     as a popup display within the IDE and
-    saved as a .png file within the project directory
+    saved as road_map.png file within the project directory
     :param road_map: List of Quadruples
     """
+
+    road_map = validate_road_map(road_map)
 
     plt.title('Travelling Salesman\'s Road Map')
 
     plt.xlabel('Longitude')
-    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
+    x = [round_coordinates(lon) for state, city, lat, lon in road_map]
     x.append(x[0])
 
     plt.ylabel('Latitude')
-    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
+    y = [round_coordinates(lat) for state, city, lat, lon in road_map]
     y.append(y[0])
 
     plt.plot(x, y, 'rD')  # vertices
