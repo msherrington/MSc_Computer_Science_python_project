@@ -1,6 +1,5 @@
-import random
-
 from math import sqrt
+from random import randint
 
 
 def can_be_floated(value):
@@ -52,7 +51,7 @@ def random_index(maximum):
         raise TypeError('Maximum must be an integer')
     if maximum < 0:
         raise ValueError('Maximum must be a positive integer')
-    return random.randint(0, maximum)
+    return randint(0, maximum)
 
 
 def round_coordinates(coord):
