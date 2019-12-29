@@ -3,7 +3,7 @@ from cities import (
     compute_total_distance,
     read_cities,
     shift_cities,
-    swap_cities,
+    swap_cities
 )
 from services import (
     can_be_floated,
@@ -13,6 +13,7 @@ from services import (
     validate_road_map,
     validate_road_map_data
 )
+
 
 
 @pytest.fixture
@@ -43,6 +44,7 @@ def assert_for_raised_error(error_type, func, params, message):
     :param params: List of parameters to pass to the function
     :param message: expected String of error message
     """
+
     with pytest.raises(error_type) as e:
         func(*params)
     assert str(e.value) == message
@@ -139,6 +141,7 @@ def test_read_cities(road_map):
     Included this test (even though it's not required) to
     check test data is being read from the file correctly
     """
+
     cities = read_cities('test-city-data.txt')
     assert set(cities).intersection(set(road_map))
 
