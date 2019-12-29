@@ -169,3 +169,17 @@ def test_validate_road_map(road_map, road_map_errors):
     assert_for_raised_error(TypeError, validate_road_map, ['string'], road_map_errors['type'])
     assert_for_raised_error(TypeError, validate_road_map, [0], road_map_errors['type'])
     assert_for_raised_error(IndexError, validate_road_map, [[]], road_map_errors['empty'])
+
+
+def test_validate_road_map_data(road_map):
+    validated_data = validate_road_map_data(road_map)
+    assert isinstance(validated_data[0], tuple)
+    assert len(validated_data[0]) == 4
+    assert isinstance(validated_data, list)
+    assert len(validated_data) == len(road_map)
+    assert_for_raised_error(TypeError, validate_road_map_data, [['string']], 'Each road_map element must be a tuple')
+    assert_for_raised_error(ValueError, validate_road_map_data, [[(1, 2, 3)]],
+                            'Each tuple in the road_map must contain 4 elements')
+    assert_for_raised_error(TypeError, validate_road_map_data, [[(1, 2, 3, 4)]], 'City and State must be strings')
+    assert_for_raised_error(TypeError, validate_road_map_data, [[('1', '2', '3', '4')]],
+                            'Coordinates must be of type float')
