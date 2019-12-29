@@ -10,30 +10,6 @@ from services import (
     validate_road_map_data
 )
 
-# CHECKLIST
-
-# You must provide good code coverage to catch any errors before we do.
-# We expect to see at least 5 tests for each function that needs to be tested (see above).
-
-# Style...
-# Use proper indentation and spacing, (check PEP8)
-# Don't repeat code if you can put it in a function and just call the function.
-
-# REQUIRED FUNCTIONS X 8:
-# def read_cities(file_name) - no test
-# def print_cities(road_map) - no test
-# ---------------can_be_floated ------------------
-# ---------------round coords ------------------
-# def compute_total_distance(road_map)
-# ---------------euclidean ------------------
-# def swap_cities(road_map, index1, index2)
-# def shift_cities(road_map):
-# def find_best_cycle(road_map) - no test
-# ---------------get random index ------------------
-# def print_map(road_map) - no test
-# ---------------visualise ------------------
-# def main() - no test
-
 
 def read_cities(file_name):
     """
