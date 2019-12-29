@@ -39,6 +39,14 @@ def road_map():
 
 
 def assert_for_raised_error(error_type, func, params, message):
+    """
+    Function used to assert raised errors
+
+    :param error_type: Python Error Type
+    :param func: Function being tested
+    :param params: List of parameters to pass to the function
+    :param message: expected String of error message
+    """
     with pytest.raises(error_type) as e:
         func(*params)
     assert str(e.value) == message
@@ -50,6 +58,7 @@ def test_round_coordinates(road_map):
     assert round_coordinates(coord) == rounded
     assert round_coordinates(str(coord)) == rounded
     assert round_coordinates(66) == 66.0
+    assert isinstance(round_coordinates(66), float)
     assert round_coordinates(12.3456789) == pytest.approx(12.34, 0.01)
     assert_for_raised_error(ValueError, round_coordinates, ['string'], 'Cannot float coordinate')
     assert_for_raised_error(TypeError, round_coordinates, [[]], 'Coordinate must be string or number')
@@ -66,7 +75,7 @@ def test_compute_total_distance(road_map):
     assert_for_raised_error(
         ValueError,
         compute_total_distance,
-        [[('California', 'Sacramento')]],
+        [[('California', 38.555605, -121.468926)]],
         'Each tuple in the road_map must contain 4 elements'
     )
     assert_for_raised_error(
@@ -83,12 +92,14 @@ def test_euclidean_distance(road_map):
 
 
 def test_swap_cities(road_map):
+    """ REQUIRED """
     index1, index2 = 0, 1
     swapped = swap_cities(road_map, index1, index2)[0]
     assert swapped[index1] == road_map[index2] and swapped[index2] == road_map[index1]
 
 
 def test_shift_cities(road_map):
+    """ REQUIRED """
     assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
 
 
