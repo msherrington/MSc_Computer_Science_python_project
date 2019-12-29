@@ -190,6 +190,25 @@ def print_map(road_map):
     print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
 
 
+def main():
+    """
+    Open specified file by name
+    Format and print city data
+    Calculate "best" cycle and print it
+    Display the best cycle as a plotted graph
+    """
+
+    file_name = input('Enter the name of the file to read from: ')
+
+    road_map = read_cities(file_name)
+    print_cities(road_map)
+
+    best_road_map = find_best_cycle(road_map)
+    print_map(best_road_map)
+
+    visualise(best_road_map)
+
+
 def visualise(road_map):
     """
     Graphically display the given road_map cycle
@@ -219,24 +238,5 @@ def visualise(road_map):
     plt.show()
 
 
-def main():
-    """
-    Open specified file by name
-    Format and print city data
-    Calculate "best" cycle and print it
-    Display the best cycle as a plotted graph
-    """
-
-    file_name = input('Enter the name of the file to read from: ')
-
-    road_map = read_cities(file_name)
-    print_cities(road_map)
-
-    best_road_map = find_best_cycle(road_map)
-    print_map(best_road_map)
-
-    visualise(best_road_map)
-
-
-if __name__ == "__main__":  # keep this in
+if __name__ == "__main__":
     main()
