@@ -47,8 +47,38 @@ def round_coordinates(coord):
 
 
 def validate_road_map(road_map):
+    """
+    Check road_map is a list with at least one element
+    Raise errors otherwise
+
+    :param road_map: List of Quadruples
+    :return: road_map: List of Quadruples
+    """
+
     if not isinstance(road_map, list):
         raise TypeError('The road_map must be a list')
     if len(road_map) == 0:
         raise IndexError('The road_map list cannot be empty')
+    return road_map
+
+
+def validate_road_map_data(road_map):
+    """
+    Check elements of road_map are tuples of four elements
+    Check the last two elements of each tuple are floats
+    Raise errors otherwise
+
+    :param road_map: List of Quadruples
+    :return: road_map: List of Quadruples
+    """
+
+    if not all(isinstance(city, tuple) for city in road_map):
+        raise TypeError('Each road_map element must be a tuple')
+    if not all(len(city) == 4 for city in road_map):
+        raise ValueError('Each tuple in the road_map must contain 4 elements')
+    for state, city, lat, lon in road_map:
+        if not all(isinstance(coord, str) for coord in [state, city]):
+            raise TypeError('City and State must be strings')
+        if not all(isinstance(coord, float) for coord in [lat, lon]):
+            raise TypeError('Coordinates must be of type float')
     return road_map
