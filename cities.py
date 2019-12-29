@@ -1,6 +1,7 @@
 from math import sqrt
 import random
 import matplotlib.pyplot as plt
+import os.path
 
 # CHECKLIST
 
@@ -29,7 +30,6 @@ import matplotlib.pyplot as plt
 # def main() - no test
 
 def read_cities(file_name):
-    # TODO: check done
     """
     Read in the data from the given `file_name`
     Return the data as a list of quadruples (4-element tuples)
@@ -37,24 +37,26 @@ def read_cities(file_name):
     :return road_map: List of Quadruples
     """
 
-    road_map = []
-    try:
-        with open(file_name) as infile:
-            for line in infile:
-                location = line.replace('\n', '').split('\t')
-                state, city, lat, lon = location
-                quadruple = (state, city, float(lat), float(lon))
-                road_map.append(quadruple)
-        return road_map
-
-    except FileNotFoundError:
-        print('File not found, check the filename and try again')
+    if not isinstance(file_name, str):
+        raise TypeError('Filename must be a string, not a {}'.format(type(file_name)))
+    if not os.path.exists(file_name):
+        message = 'File "{}" not found.'.format(file_name)
         if '.' not in file_name:
-            print('Remember to include the file type suffix e.g. filename.txt')
-    except ValueError:
-        print('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
-        if not file_name.endswith('.txt'):
-            print('HINT: Try using a text file')
+            message += ' Remember to add the file suffix e.g. "filename.txt"'
+        raise FileNotFoundError(message)
+
+    road_map = []
+    with open(file_name) as infile:
+        for line in infile:
+            location = line.replace('\n', '').split('\t')
+            if len(location) != 4:
+                raise ValueError('Line {} of {} must contain 4 elements'.format(str(len(road_map)+1), file_name))
+            state, city, lat, lon = location
+            if not all(can_be_floated(x) for x in [lat, lon]):
+                raise ValueError('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
+            quadruple = (state, city, float(lat), float(lon))
+            road_map.append(quadruple)
+    return road_map
 
 
 def print_cities(road_map):
