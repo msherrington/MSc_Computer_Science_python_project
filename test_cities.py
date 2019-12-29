@@ -15,32 +15,6 @@ from services import (
 )
 
 
-# We expect to see at least 5 tests for each function that needs to be tested (see above).
-# Test types:
-# test output matches whats expected from input
-# test output type matches expected data type
-# test passing nothing in creates a certain error type
-# test number of elements in returned result
-# test element types in returned tuple
-# test different ways to break the function
-# test passing the same variable in twice to a function which takes two discrete arguments
-# test against hardcoded results and against dynamic results
-# Test for single element lists
-# Test for single element tuples
-# test negative numbers
-# REQUIRED FUNCTIONS X 8:
-# def read_cities(file_name) - no test
-# def print_cities(road_map) - no test
-# def compute_total_distance(road_map)
-# def swap_cities(road_map, index1, index2)
-# def shift_cities(road_map):
-# def find_best_cycle(road_map) - no test
-# def print_map(road_map) - no test
-# def main() - no test
-
-
-
-
 @pytest.fixture
 def road_map():
     """ Matches data in test-city-data.txt """
@@ -87,7 +61,6 @@ def test_round_coordinates(road_map):
 
 
 def test_compute_total_distance(road_map, road_map_errors):
-    """ REQUIRED """
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
     assert isinstance(compute_total_distance(road_map), float)
     assert compute_total_distance([('California', 'Sacramento', 38.555605, -121.468926)]) == 0.0
@@ -117,7 +90,6 @@ def test_euclidean_distance(road_map):
 
 
 def test_swap_cities(road_map, road_map_errors):
-    """ REQUIRED """
     index1, index2 = 0, 1
     swapped = swap_cities(road_map, index1, index2)[0]
     assert swapped[index1] == road_map[index2] and swapped[index2] == road_map[index1]
@@ -139,7 +111,6 @@ def test_swap_cities(road_map, road_map_errors):
 
 
 def test_shift_cities(road_map, road_map_errors):
-    """ REQUIRED """
     shifted = shift_cities(road_map)
     assert shifted == ([road_map[-1]] + road_map[:-1])
     assert shifted[0] == road_map[-1]
