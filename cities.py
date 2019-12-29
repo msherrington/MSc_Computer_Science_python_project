@@ -1,7 +1,8 @@
-from math import sqrt
-import random
 import matplotlib.pyplot as plt
 import os.path
+import random
+
+from math import sqrt
 
 # CHECKLIST
 
