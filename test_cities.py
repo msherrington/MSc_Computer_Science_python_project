@@ -125,9 +125,17 @@ def test_swap_cities(road_map, road_map_errors):
                             'Index cannot be negative, or higher than length of road_map list')
 
 
-def test_shift_cities(road_map):
+def test_shift_cities(road_map, road_map_errors):
     """ REQUIRED """
-    assert shift_cities(road_map) == ([road_map[-1]] + road_map[:-1])
+    shifted = shift_cities(road_map)
+    assert shifted == ([road_map[-1]] + road_map[:-1])
+    assert shifted[0] == road_map[-1]
+    assert isinstance(shifted, list)
+    assert len(shifted) == len(road_map)
+    assert isinstance(shifted[0], tuple)
+    assert len(shifted[0]) == 4
+    assert_for_raised_error(IndexError, shift_cities, [[]], road_map_errors['empty'])
+    assert_for_raised_error(TypeError, shift_cities, ['string'], road_map_errors['type'])
 
 
 def test_get_random_index(road_map):
