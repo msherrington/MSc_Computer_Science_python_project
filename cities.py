@@ -66,7 +66,6 @@ def read_cities(file_name):
 
 
 def print_cities(road_map):
-    # TODO: check done
     """
     Unpack city data from road_map
     Format latitude and longitude to 2 decimal places
@@ -74,23 +73,20 @@ def print_cities(road_map):
     :param road_map: List of Quadruples
     """
 
-    try:
-        if not road_map:
-            print('No city data to print')
-            return
-        if not isinstance(road_map, list):
-            raise TypeError
+    if not isinstance(road_map, list):
+        raise TypeError('The road_map must be a list')
+    if len(road_map) == 0:
+        raise IndexError('The road_map list cannot be empty')
 
-        for location in road_map:
-            state, city, lat, lon = location
-            lat = round_coordinates(lat, city, state)
-            lon = round_coordinates(lon, city, state)
-            if lat and lon:
-                print('{}, {}: {}, {}'.format(city, state, lat, lon))
-        print('='*40)
-
-    except (TypeError, ValueError):
-        print('Error printing cities, please check data format')
+    for location in road_map:
+        if len(location) != 4:
+            raise ValueError('Each road_map index must contain 4 elements')
+        state, city, lat, lon = location
+        lat = round_coordinates(lat)
+        lon = round_coordinates(lon)
+        if lat and lon:
+            print('{}, {}: {}, {}'.format(city, state, lat, lon))
+    print('='*40)
 
 
 def can_be_floated(value):
