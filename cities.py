@@ -1,8 +1,13 @@
 import matplotlib.pyplot as plt
 import os.path
 
-from services import Services
 from math import sqrt
+from services import (
+    can_be_floated,
+    random_index,
+    round_coordinates,
+    validate_road_map
+)
 
 # CHECKLIST
 
@@ -58,7 +63,7 @@ def read_cities(file_name):
             if len(location) != 4:
                 raise ValueError('Line {} of {} must contain 4 elements'.format(str(len(road_map)+1), file_name))
             state, city, lat, lon = location
-            if not all(Services().can_be_floated(x) for x in [lat, lon]):
+            if not all(can_be_floated(x) for x in [lat, lon]):
                 raise ValueError('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
             quadruple = (state, city, float(lat), float(lon))
             road_map.append(quadruple)
@@ -73,14 +78,14 @@ def print_cities(road_map):
     :param road_map: List of Quadruples
     """
 
-    road_map = Services().validate_road_map(road_map)
+    road_map = validate_road_map(road_map)
 
     for location in road_map:
         if len(location) != 4:
             raise ValueError('Each road_map index must contain 4 elements')
         state, city, lat, lon = location
-        lat = Services().round_coordinates(lat)
-        lon = Services().round_coordinates(lon)
+        lat = round_coordinates(lat)
+        lon = round_coordinates(lon)
         if lat and lon:
             print('{}, {}: {}, {}'.format(city, state, lat, lon))
     print('='*40)
@@ -95,7 +100,7 @@ def compute_total_distance(road_map):
     :return total_distance: Float
     """
 
-    road_map = Services().validate_road_map(road_map)
+    road_map = validate_road_map(road_map)
 
     total_distance = 0
     for i, city in enumerate(road_map):
@@ -144,7 +149,7 @@ def swap_cities(road_map, index1, index2):
     :return new_tuple: Tuple containing a List of Quadruples and a Float
     """
 
-    road_map = Services().validate_road_map(road_map)
+    road_map = validate_road_map(road_map)
 
     indices = [index1, index2]
     if not all(isinstance(i, int) for i in indices):
@@ -197,8 +202,8 @@ def find_best_cycle(road_map):
         count = 10000
         while count > 0:
             temp_road_map = shift_cities(current_road_map) if count % 2 != 0 else current_road_map
-            index1 = Services().random_index(maximum)
-            index2 = Services().random_index(maximum)
+            index1 = random_index(maximum)
+            index2 = random_index(maximum)
             cycle = swap_cities(temp_road_map, index1, index2)
             if not best_cycle or cycle[1] < best_cycle[1]:
                 best_cycle = cycle
@@ -248,11 +253,11 @@ def visualise(road_map):
     plt.title('Travelling Salesman\'s Road Map')
 
     plt.xlabel('Longitude')
-    x = [Services().round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
+    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
     x.append(x[0])
 
     plt.ylabel('Latitude')
-    y = [Services().round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
+    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
     y.append(y[0])
 
     plt.plot(x, y, 'rD')  # vertices
