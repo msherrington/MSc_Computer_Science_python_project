@@ -59,7 +59,7 @@ def read_cities(file_name):
             if len(location) != 4:
                 raise ValueError('Line {} of {} must contain 4 elements'.format(str(len(road_map)+1), file_name))
             state, city, lat, lon = location
-            if not all(can_be_floated(x) for x in [lat, lon]):
+            if not all(Services().can_be_floated(x) for x in [lat, lon]):
                 raise ValueError('Invalid data on line {} of {}'.format(str(len(road_map)+1), file_name))
             quadruple = (state, city, float(lat), float(lon))
             road_map.append(quadruple)
@@ -87,22 +87,6 @@ def print_cities(road_map):
     print('='*40)
 
 
-def can_be_floated(value):
-    """
-    Check if a datatype can be floated without errors
-    :param value: any datatype
-    :return: Boolean
-    """
-
-    if not isinstance(value, (str, int, float)):
-        return False
-    try:
-        float(value)
-        return True
-    except ValueError:
-        return False
-
-
 def round_coordinates(coord):
     """
     Takes a latitude or longitude
@@ -113,7 +97,7 @@ def round_coordinates(coord):
 
     if not isinstance(coord, (str, int, float)):
         raise TypeError('Coordinate must be string or number')
-    if not can_be_floated(coord):
+    if not Services().can_be_floated(coord):
         raise ValueError('Cannot float coordinate')
     return round(float(coord), 2)
 
