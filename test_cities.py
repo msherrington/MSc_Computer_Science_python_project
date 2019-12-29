@@ -1,5 +1,11 @@
 import pytest
 from cities import *
+from services import (
+    can_be_floated,
+    random_index,
+    round_coordinates,
+    validate_road_map
+)
 
 
 # We expect to see at least 5 tests for each function that needs to be tested (see above).
