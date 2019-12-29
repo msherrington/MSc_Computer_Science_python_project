@@ -13,10 +13,6 @@ from services import (
 
 # CHECKLIST
 
-# TODO: Raise Errors, don't catch them!!
-# TODO: test for raised errors
-
-
 # You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
 # You must provide good code coverage to catch any errors before we do.
 # We expect to see at least 5 tests for each function that needs to be tested (see above).
@@ -103,16 +99,11 @@ def compute_total_distance(road_map):
     """
 
     road_map = validate_road_map(road_map)
+    road_map = validate_road_map_data(road_map)
 
     total_distance = 0
     for i, city in enumerate(road_map):
         next_city = road_map[(i + 1) % len(road_map)]
-        if not all(isinstance(c, tuple) for c in [city, next_city]):
-            raise TypeError('Each road_map element must be a tuple')
-        if not len(city) == len(next_city) == 4:
-            raise ValueError('Each tuple in the road_map must contain 4 elements')
-        if not all(isinstance(c, float) for c in [city[2], city[3], next_city[2], next_city[3]]):
-            raise TypeError('Coordinates must be of type float')
         location1 = city[-2:]
         location2 = next_city[-2:]
         total_distance += euclidean_distance(location1, location2)
@@ -177,7 +168,6 @@ def shift_cities(road_map):
     """
 
     road_map = validate_road_map(road_map)
-
     return [road_map[-1]] + road_map[:-1]
 
 
@@ -193,13 +183,16 @@ def find_best_cycle(road_map):
 
     current_road_map = validate_road_map(road_map)
     best_cycle = None
+
     maximum = len(road_map) - 1
+
     count = 10000
     while count > 0:
         current_road_map = shift_cities(current_road_map)
         index1 = random_index(maximum)
         index2 = random_index(maximum)
         cycle = swap_cities(current_road_map, index1, index2)
+
         if not best_cycle or cycle[1] < best_cycle[1]:
             best_cycle = cycle
             current_road_map = cycle[0]
@@ -273,14 +266,12 @@ def main():
     file_name = input('Enter the name of the file to read from: ')
 
     road_map = read_cities(file_name)
-    road_map = validate_road_map(road_map)
     print_cities(road_map)
 
     best_cycle = find_best_cycle(road_map)
     print_map(best_cycle)
 
     best_road_map = best_cycle[0]
-    best_road_map = validate_road_map(best_road_map)
     visualise(best_road_map)
 
 
