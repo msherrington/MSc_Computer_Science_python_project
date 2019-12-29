@@ -87,8 +87,16 @@ def test_compute_total_distance(road_map):
 
 
 def test_euclidean_distance(road_map):
-    city1, city2 = road_map[0], road_map[1]
-    assert euclidean_distance(city1[-2:], city2[-2:]) == pytest.approx(31.842, 0.01)
+    coord_one, coord_two = road_map[0][-2:], road_map[1][-2:]
+    assert isinstance(euclidean_distance(coord_one, coord_two), float)
+    assert euclidean_distance(coord_one, coord_two) == pytest.approx(31.842, 0.01)
+    assert euclidean_distance(coord_one, coord_one) == 0.0
+    assert_for_raised_error(TypeError, euclidean_distance, [coord_one, 'string'],
+                            'Coordinates must be packed in tuples or lists')
+    assert_for_raised_error(ValueError, euclidean_distance, [coord_one, (38.6, 45.2, 38.4)],
+                            'Exactly two elements required in location tuple')
+    assert_for_raised_error(TypeError, euclidean_distance, [coord_one, (38.6, '45.2',)],
+                            'Coordinates must be a number')
 
 
 def test_swap_cities(road_map):
