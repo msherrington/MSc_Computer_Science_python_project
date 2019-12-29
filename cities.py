@@ -208,29 +208,29 @@ def find_best_cycle(road_map):
 
 
 def print_map(best_cycle):
-    # TODO: check ths one carefully
-    # TODO: catch exceptions
     """
     Print the connection and cost between each city
     Print the total cost for the entire cycle
     :param best_cycle: Tuple containing List of Quadruples and a Float
     """
 
-    try:
-        if not best_cycle:
-            raise TypeError
-        road_map = best_cycle[0]
-        for i, city in enumerate(road_map):
-            next_city = road_map[(i + 1) % len(road_map)]
-            if not len(city) == len(next_city) == 4:
-                raise ValueError
-            cost = euclidean_distance(city[-2:], next_city[-2:])
-            print('{} to {}: {}'.format(city[0], next_city[0], cost))
-        total_distance = best_cycle[1]
-        print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
+    if not isinstance(best_cycle, tuple):
+        raise TypeError('Best cycle must be a tuple')
+    if not len(best_cycle) == 2:
+        raise ValueError('Best cycle tuple must contain 2 elements')
+    if not isinstance(best_cycle[1], float):
+        raise TypeError('Best cycle distance must be a float')
 
-    except (IndexError, TypeError, ValueError):
-        print('Invalid data, cannot print map')
+    road_map = validate_road_map(best_cycle[0])
+    road_map = validate_road_map_data(road_map)
+
+    for i, city in enumerate(road_map):
+        next_city = road_map[(i + 1) % len(road_map)]
+        cost = euclidean_distance(city[-2:], next_city[-2:])
+        print('{} to {}: {}'.format(city[0], next_city[0], cost))
+
+    total_distance = best_cycle[1]
+    print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
 
 
 def visualise(road_map):
