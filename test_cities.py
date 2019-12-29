@@ -101,11 +101,22 @@ def test_euclidean_distance(road_map):
                             'Coordinates must be a number')
 
 
-def test_swap_cities(road_map):
+def test_swap_cities(road_map, road_map_errors):
     """ REQUIRED """
     index1, index2 = 0, 1
     swapped = swap_cities(road_map, index1, index2)[0]
     assert swapped[index1] == road_map[index2] and swapped[index2] == road_map[index1]
+    assert isinstance(swapped, list)
+    assert len(swapped) == len(road_map)
+    assert isinstance(swapped[0], tuple)
+    assert len(swapped[0]) == 4
+    assert_for_raised_error(IndexError, swap_cities, [[], index1, index2], road_map_errors['empty'])
+    assert_for_raised_error(TypeError, swap_cities, ['string', index1, index2], road_map_errors['type'])
+    assert_for_raised_error(TypeError, swap_cities, [road_map, 'index1', index2], 'Index must be an integer')
+    assert_for_raised_error(IndexError, swap_cities, [road_map, index1, -2],
+                            'Index cannot be negative, or higher than length of road_map list')
+    assert_for_raised_error(IndexError, swap_cities, [road_map, index1, len(road_map)+3],
+                            'Index cannot be negative, or higher than length of road_map list')
 
 
 def test_shift_cities(road_map):
