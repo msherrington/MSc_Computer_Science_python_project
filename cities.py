@@ -65,6 +65,14 @@ def read_cities(file_name):
     return road_map
 
 
+def validate_road_map(road_map):
+    if not isinstance(road_map, list):
+        raise TypeError('The road_map must be a list')
+    if len(road_map) == 0:
+        raise IndexError('The road_map list cannot be empty')
+    return road_map
+
+
 def print_cities(road_map):
     """
     Unpack city data from road_map
@@ -73,10 +81,7 @@ def print_cities(road_map):
     :param road_map: List of Quadruples
     """
 
-    if not isinstance(road_map, list):
-        raise TypeError('The road_map must be a list')
-    if len(road_map) == 0:
-        raise IndexError('The road_map list cannot be empty')
+    road_map = validate_road_map(road_map)
 
     for location in road_map:
         if len(location) != 4:
@@ -129,10 +134,7 @@ def compute_total_distance(road_map):
     :return total_distance: Float
     """
 
-    if not isinstance(road_map, list):
-        raise TypeError('The road_map must be a list')
-    if len(road_map) == 0:
-        raise IndexError('The road_map list cannot be empty')
+    road_map = validate_road_map(road_map)
 
     total_distance = 0
     for i, city in enumerate(road_map):
