@@ -8,7 +8,6 @@ from math import sqrt
 
 # TODO: Raise Errors, don't catch them!!
 # TODO: test for raised errors
-# TODO: check resources of lessons 6 and 7
 
 
 # You must implement all the required functions and the implementation must handle all the permitted inputs correctly.
@@ -23,12 +22,18 @@ from math import sqrt
 # REQUIRED FUNCTIONS X 8:
 # def read_cities(file_name) - no test
 # def print_cities(road_map) - no test
+# ---------------can_be_floated ------------------
+# ---------------round coords ------------------
 # def compute_total_distance(road_map)
+# ---------------euclidean ------------------
 # def swap_cities(road_map, index1, index2)
 # def shift_cities(road_map):
 # def find_best_cycle(road_map) - no test
+# ---------------get random index ------------------
 # def print_map(road_map) - no test
+# ---------------visualise ------------------
 # def main() - no test
+
 
 def read_cities(file_name):
     """
