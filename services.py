@@ -29,11 +29,11 @@ class Services:
         :return integer
         """
 
-        try:
-            return random.randint(0, maximum)
-
-        except (TypeError, ValueError):
-            print('Invalid number: must be positive integer')
+        if not isinstance(maximum, int):
+            raise TypeError('Maximum must be an integer')
+        if maximum < 0:
+            raise ValueError('Maximum must be a positive integer')
+        return random.randint(0, maximum)
 
     @staticmethod
     def round_coordinates(coord):
