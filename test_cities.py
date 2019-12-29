@@ -97,8 +97,10 @@ def test_compute_total_distance(road_map, road_map_errors):
                             'Each road_map element must be a tuple')
     assert_for_raised_error(ValueError, compute_total_distance, [[('California', 38.555605, -121.468926)]],
                             'Each tuple in the road_map must contain 4 elements')
-    assert_for_raised_error(TypeError, compute_total_distance, [[(38.555605, -121.468926, 'California', 'Sacramento')]],
+    assert_for_raised_error(TypeError, compute_total_distance, [[('California', 'Sacramento', 'string', 'string')]],
                             'Coordinates must be of type float')
+    assert_for_raised_error(TypeError, compute_total_distance,[[(38.555605, -121.468926, 38.555605, -121.468926)]],
+                            'City and State must be strings')
 
 
 def test_euclidean_distance(road_map):
@@ -123,8 +125,12 @@ def test_swap_cities(road_map, road_map_errors):
     assert len(swapped) == len(road_map)
     assert isinstance(swapped[0], tuple)
     assert len(swapped[0]) == 4
-    assert_for_raised_error(IndexError, swap_cities, [[], index1, index2], road_map_errors['empty'])
+    swap_same_index = swap_cities(road_map, 0, 0)[0]
+    assert swap_same_index == road_map
+    assert len(swap_same_index) == len(road_map)
     assert_for_raised_error(TypeError, swap_cities, ['string', index1, index2], road_map_errors['type'])
+    assert_for_raised_error(TypeError, swap_cities, [index2, index1, index2], road_map_errors['type'])
+    assert_for_raised_error(IndexError, swap_cities, [[], index1, index2], road_map_errors['empty'])
     assert_for_raised_error(TypeError, swap_cities, [road_map, 'index1', index2], 'Index must be an integer')
     assert_for_raised_error(IndexError, swap_cities, [road_map, index1, -2],
                             'Index cannot be negative, or higher than length of road_map list')
@@ -141,8 +147,9 @@ def test_shift_cities(road_map, road_map_errors):
     assert len(shifted) == len(road_map)
     assert isinstance(shifted[0], tuple)
     assert len(shifted[0]) == 4
-    assert_for_raised_error(IndexError, shift_cities, [[]], road_map_errors['empty'])
     assert_for_raised_error(TypeError, shift_cities, ['string'], road_map_errors['type'])
+    assert_for_raised_error(TypeError, shift_cities, [0], road_map_errors['type'])
+    assert_for_raised_error(IndexError, shift_cities, [[]], road_map_errors['empty'])
 
 
 def test_get_random_index(road_map):
