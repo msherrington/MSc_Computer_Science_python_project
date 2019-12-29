@@ -261,7 +261,6 @@ def visualise(road_map):
 
 
 def main():
-    # TODO: raise errors (?) - maybe not
     """
     Open specified file by name
     Format and print city data
@@ -272,12 +271,14 @@ def main():
     file_name = input('Enter the name of the file to read from: ')
 
     road_map = read_cities(file_name)
+    road_map = validate_road_map(road_map)
     print_cities(road_map)
 
     best_cycle = find_best_cycle(road_map)
     print_map(best_cycle)
 
     best_road_map = best_cycle[0]
+    best_road_map = validate_road_map(best_road_map)
     visualise(best_road_map)
 
 
