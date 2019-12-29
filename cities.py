@@ -10,6 +10,11 @@ from services import (
     validate_road_map_data
 )
 
+# ___ INFORMATION _____
+# Before running this program you will need to install matplotlib by running
+# `pip install matplotlib` through the command line,
+# or choose another option from https://matplotlib.org/3.1.1/users/installing.html
+
 
 def read_cities(file_name):
     """

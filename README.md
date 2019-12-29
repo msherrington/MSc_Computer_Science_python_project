@@ -2,6 +2,14 @@
 
 This coursework considers a simplified version of the travelling salesman problem.
 
+```
+INFORMATION
+
+Before running this program you will need to install matplotlib by running `pip install matplotlib`
+through the command line, or choose another option from https://matplotlib.org/3.1.1/users/installing.html
+``` 
+
+
 ## Purposes of this assignment
 
 - To get skills for solving more complex problems with programs.
