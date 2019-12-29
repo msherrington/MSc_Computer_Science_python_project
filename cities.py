@@ -150,7 +150,6 @@ def compute_total_distance(road_map):
 
 
 def euclidean_distance(location1, location2):
-    # TODO: check done
     """
     Calculate the Euclidean distance between 2 cities
     Accept lat/lon coordinates of (x1,y1) and (x2,y2)
@@ -160,13 +159,16 @@ def euclidean_distance(location1, location2):
     :return: Float
     """
 
-    try:
-        lat1, lon1 = location1
-        lat2, lon2 = location2
-        return sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
-
-    except (TypeError, ValueError):
-        print('Error calculating euclidean_distance, check coordinates data')
+    locations = [location1, location2]
+    if not all(isinstance(x, (tuple, list)) for x in locations):
+        raise TypeError('Coordinates must be packed in tuples or lists')
+    if not all(len(x) == 2 for x in locations):
+        raise ValueError('Exactly two elements required in location tuple')
+    lat1, lon1 = location1
+    lat2, lon2 = location2
+    if not all(isinstance(x, (float, int)) for x in [lat1, lon1, lat2, lon2]):
+        raise TypeError('Coordinates must be a number')
+    return sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
 
 
 def swap_cities(road_map, index1, index2):
