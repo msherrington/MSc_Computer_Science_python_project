@@ -99,7 +99,7 @@ def test_compute_total_distance(road_map, road_map_errors):
                             'Each tuple in the road_map must contain 4 elements')
     assert_for_raised_error(TypeError, compute_total_distance, [[('California', 'Sacramento', 'string', 'string')]],
                             'Coordinates must be of type float')
-    assert_for_raised_error(TypeError, compute_total_distance,[[(38.555605, -121.468926, 38.555605, -121.468926)]],
+    assert_for_raised_error(TypeError, compute_total_distance, [[(38.555605, -121.468926, 38.555605, -121.468926)]],
                             'City and State must be strings')
 
 
@@ -131,7 +131,7 @@ def test_swap_cities(road_map, road_map_errors):
     assert_for_raised_error(TypeError, swap_cities, ['string', index1, index2], road_map_errors['type'])
     assert_for_raised_error(TypeError, swap_cities, [index2, index1, index2], road_map_errors['type'])
     assert_for_raised_error(IndexError, swap_cities, [[], index1, index2], road_map_errors['empty'])
-    assert_for_raised_error(TypeError, swap_cities, [road_map, 'index1', index2], 'Index must be an integer')
+    assert_for_raised_error(TypeError, swap_cities, [road_map, 'string', index2], 'Index must be an integer')
     assert_for_raised_error(IndexError, swap_cities, [road_map, index1, -2],
                             'Index cannot be negative, or higher than length of road_map list')
     assert_for_raised_error(IndexError, swap_cities, [road_map, index1, len(road_map)+3],
