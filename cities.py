@@ -80,26 +80,11 @@ def print_cities(road_map):
         if len(location) != 4:
             raise ValueError('Each road_map index must contain 4 elements')
         state, city, lat, lon = location
-        lat = round_coordinates(lat)
-        lon = round_coordinates(lon)
+        lat = Services().round_coordinates(lat)
+        lon = Services().round_coordinates(lon)
         if lat and lon:
             print('{}, {}: {}, {}'.format(city, state, lat, lon))
     print('='*40)
-
-
-def round_coordinates(coord):
-    """
-    Takes a latitude or longitude
-    Return a float rounded to 2 decimal places
-    :param coord: Number or String
-    :return: Float (rounded to 2 decimal places)
-    """
-
-    if not isinstance(coord, (str, int, float)):
-        raise TypeError('Coordinate must be string or number')
-    if not Services().can_be_floated(coord):
-        raise ValueError('Cannot float coordinate')
-    return round(float(coord), 2)
 
 
 def compute_total_distance(road_map):
@@ -278,11 +263,11 @@ def visualise(road_map):
     plt.title('Travelling Salesman\'s Road Map')
 
     plt.xlabel('Longitude')
-    x = [round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
+    x = [Services().round_coordinates(lon, city, state) for state, city, lat, lon in road_map]
     x.append(x[0])
 
     plt.ylabel('Latitude')
-    y = [round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
+    y = [Services().round_coordinates(lat, city, state) for state, city, lat, lon in road_map]
     y.append(y[0])
 
     plt.plot(x, y, 'rD')  # vertices
