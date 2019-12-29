@@ -40,7 +40,7 @@ def road_map():
 
 def assert_for_raised_error(error_type, func, params, message):
     """
-    Function used to assert raised errors
+    Reusable function to assert raised errors
 
     :param error_type: Python Error Type
     :param func: Function being tested
@@ -71,19 +71,12 @@ def test_compute_total_distance(road_map):
     assert compute_total_distance([('California', 'Sacramento', 38.555605, -121.468926)]) == 0.0
     assert_for_raised_error(IndexError, compute_total_distance, [[]], 'The road_map list cannot be empty')
     assert_for_raised_error(TypeError, compute_total_distance, ['California'], 'The road_map must be a list')
-    assert_for_raised_error(TypeError, compute_total_distance, [['California']], 'Each road_map element must be a tuple')
-    assert_for_raised_error(
-        ValueError,
-        compute_total_distance,
-        [[('California', 38.555605, -121.468926)]],
-        'Each tuple in the road_map must contain 4 elements'
-    )
-    assert_for_raised_error(
-        TypeError,
-        compute_total_distance,
-        [[(38.555605, -121.468926, 'California', 'Sacramento')]],
-        'Coordinates must be of type float'
-    )
+    assert_for_raised_error(TypeError, compute_total_distance, [['California']],
+                            'Each road_map element must be a tuple')
+    assert_for_raised_error(ValueError, compute_total_distance, [[('California', 38.555605, -121.468926)]],
+                            'Each tuple in the road_map must contain 4 elements')
+    assert_for_raised_error(TypeError, compute_total_distance, [[(38.555605, -121.468926, 'California', 'Sacramento')]],
+                            'Coordinates must be of type float')
 
 
 def test_euclidean_distance(road_map):
