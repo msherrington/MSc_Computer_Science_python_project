@@ -155,26 +155,25 @@ def find_best_cycle(road_map):
     Calculate the total distance after each shift
     Each iteration uses the shortest road_map found so far
     :param road_map: List of Quadruples
-    :return best_cycle: Tuple containing a List of Quadruples and a Float
+    :return best_road_map: List of Quadruples
     """
 
     current_road_map = validate_road_map(road_map)
-    best_cycle = None
+    best_road_map = current_road_map
+    shortest_distance = compute_total_distance(current_road_map)
 
-    maximum = len(road_map) - 1
+    maximum = len(current_road_map) - 1
 
     count = 10000
     while count > 0:
-        current_road_map = shift_cities(current_road_map)
-        index1 = random_index(maximum)
-        index2 = random_index(maximum)
-        cycle = swap_cities(current_road_map, index1, index2)
+        current_road_map = shift_cities(best_road_map)
+        index1, index2 = random_index(maximum), random_index(maximum)
+        swapped_road_map, swapped_distance = swap_cities(current_road_map, index1, index2)
 
-        if not best_cycle or cycle[1] < best_cycle[1]:
-            best_cycle = cycle
-            current_road_map = cycle[0]
+        if swapped_distance < shortest_distance:
+            best_road_map, shortest_distance = swapped_road_map, swapped_distance
         count -= 1
-    return best_cycle
+    return best_road_map
 
 
 def print_map(best_cycle):
