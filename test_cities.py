@@ -38,6 +38,15 @@ def road_map():
     ]
 
 
+@pytest.fixture
+def road_map_errors():
+    """ Dictionary of common road_map error messages """
+    return {
+        'empty': 'The road_map list cannot be empty',
+        'type': 'The road_map must be a list'
+    }
+
+
 def assert_for_raised_error(error_type, func, params, message):
     """
     Reusable function to assert raised errors
@@ -64,13 +73,13 @@ def test_round_coordinates(road_map):
     assert_for_raised_error(TypeError, round_coordinates, [[]], 'Coordinate must be string or number')
 
 
-def test_compute_total_distance(road_map):
+def test_compute_total_distance(road_map, road_map_errors):
     """ REQUIRED """
     assert compute_total_distance(road_map) == pytest.approx(31.842+30.110+1.819, 0.01)
     assert isinstance(compute_total_distance(road_map), float)
     assert compute_total_distance([('California', 'Sacramento', 38.555605, -121.468926)]) == 0.0
-    assert_for_raised_error(IndexError, compute_total_distance, [[]], 'The road_map list cannot be empty')
-    assert_for_raised_error(TypeError, compute_total_distance, ['California'], 'The road_map must be a list')
+    assert_for_raised_error(IndexError, compute_total_distance, [[]], road_map_errors['empty'])
+    assert_for_raised_error(TypeError, compute_total_distance, ['California'], road_map_errors['type'])
     assert_for_raised_error(TypeError, compute_total_distance, [['California']],
                             'Each road_map element must be a tuple')
     assert_for_raised_error(ValueError, compute_total_distance, [[('California', 38.555605, -121.468926)]],
