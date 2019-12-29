@@ -189,26 +189,20 @@ def find_best_cycle(road_map):
     :return best_cycle: Tuple containing a List of Quadruples and a Float
     """
 
-    try:
-        if not road_map:
-            raise ValueError
-        current_road_map = road_map
-        best_cycle = None
-        maximum = len(road_map) - 1
-        count = 10000
-        while count > 0:
-            temp_road_map = shift_cities(current_road_map) if count % 2 != 0 else current_road_map
-            index1 = random_index(maximum)
-            index2 = random_index(maximum)
-            cycle = swap_cities(temp_road_map, index1, index2)
-            if not best_cycle or cycle[1] < best_cycle[1]:
-                best_cycle = cycle
-                current_road_map = cycle[0]
-            count -= 1
-        return best_cycle
-
-    except(TypeError, ValueError):
-        print('Error finding best cycle')
+    current_road_map = validate_road_map(road_map)
+    best_cycle = None
+    maximum = len(road_map) - 1
+    count = 10000
+    while count > 0:
+        current_road_map = shift_cities(current_road_map)
+        index1 = random_index(maximum)
+        index2 = random_index(maximum)
+        cycle = swap_cities(current_road_map, index1, index2)
+        if not best_cycle or cycle[1] < best_cycle[1]:
+            best_cycle = cycle
+            current_road_map = cycle[0]
+        count -= 1
+    return best_cycle
 
 
 def print_map(best_cycle):
