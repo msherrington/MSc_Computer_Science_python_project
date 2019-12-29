@@ -1,3 +1,0 @@
-California	Sacramento	38.555605	-121.468926
-Illinois	Springfield	39.78325	-89.650373
-Nevada	Carson City	39.160949	-119.753877

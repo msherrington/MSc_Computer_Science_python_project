@@ -18,7 +18,6 @@ from services import (
 
 @pytest.fixture
 def road_map():
-    """ Matches data in test-city-data.txt """
     return [
         ('California', 'Sacramento', 38.555605, -121.468926),
         ('Illinois', 'Springfield', 39.78325, -89.650373),
@@ -136,14 +135,6 @@ def test_random_index(road_map):
     assert_for_raised_error(ValueError, random_index, [-2], 'Maximum must be a positive integer')
 
 
-def test_read_cities(road_map):
-    """
-    Included this test (even though it's not required) to
-    check test data is being read from the file correctly
-    """
-
-    cities = read_cities('test-city-data.txt')
-    assert set(cities).intersection(set(road_map))
 
 
 def test_can_be_floated():
