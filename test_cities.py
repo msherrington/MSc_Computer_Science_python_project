@@ -158,3 +158,14 @@ def test_can_be_floated():
     assert can_be_floated('5.0')
     assert not can_be_floated('text string')
     assert not can_be_floated([5])
+
+
+def test_validate_road_map(road_map, road_map_errors):
+    validated = validate_road_map(road_map)
+    assert isinstance(validated[0], tuple)
+    assert len(validated[0]) == 4
+    assert isinstance(validated, list)
+    assert len(validated) == len(road_map)
+    assert_for_raised_error(TypeError, validate_road_map, ['string'], road_map_errors['type'])
+    assert_for_raised_error(TypeError, validate_road_map, [0], road_map_errors['type'])
+    assert_for_raised_error(IndexError, validate_road_map, [[]], road_map_errors['empty'])
