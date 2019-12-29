@@ -87,7 +87,7 @@ def swap_cities(road_map, index1, index2):
     :param road_map: List of Quadruples
     :param index1: Integer
     :param index2: Integer
-    :return new_tuple: Tuple containing a List of Quadruples and a Float
+    :return: Tuple containing a List of Quadruples and a Float
     """
 
     road_map = validate_road_map(road_map)
@@ -121,7 +121,7 @@ def shift_cities(road_map):
 
 def find_best_cycle(road_map):
     """
-    Perform 10,000 iterations of either shifting or swapping indices in road_map
+    Perform 10,000 iterations shifting and swapping indices in road_map
     Swapping occurs using randomly generated indices
     Calculate the total distance after each shift
     Each iteration uses the shortest road_map found so far
