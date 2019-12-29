@@ -174,7 +174,6 @@ def euclidean_distance(location1, location2):
 
 
 def swap_cities(road_map, index1, index2):
-    # TODO: check done
     """
     Swap the elements at index1 and index2 in the road_map list
     Calculate total distance between cities in amended road_map
@@ -184,25 +183,20 @@ def swap_cities(road_map, index1, index2):
     :return new_tuple: Tuple containing a List of Quadruples and a Float
     """
 
-    try:
-        indices = [index1, index2]
-        if not all(isinstance(i, int) for i in indices) or not isinstance(road_map, list):
-            raise TypeError
+    road_map = validate_road_map(road_map)
 
-        new_map = road_map[:]
-        if not all(new_map[i] and i >= 0 for i in indices):
-            raise IndexError
+    indices = [index1, index2]
+    if not all(isinstance(i, int) for i in indices):
+        raise TypeError('Index must be an integer')
 
-        if index1 != index2:
-            new_map[index1], new_map[index2] = new_map[index2], new_map[index1]
-        distance = compute_total_distance(new_map)
-        if distance:
-            return tuple((new_map, distance))
+    if not all(0 <= i <= len(road_map) for i in indices):
+        raise IndexError('Index cannot be negative, or higher than length of road_map list')
 
-    except TypeError:
-        print('Data error. Check road_map and indices data types')
-    except IndexError:
-        print('Index cannot be negative, or higher than length of road_map list')
+    new_map = road_map[:]
+    if index1 != index2:
+        new_map[index1], new_map[index2] = new_map[index2], new_map[index1]
+    distance = compute_total_distance(new_map)
+    return tuple((new_map, distance))
 
 
 def shift_cities(road_map):
