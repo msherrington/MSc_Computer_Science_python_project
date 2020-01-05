@@ -165,7 +165,7 @@ def print_map(road_map):
     for i, city in enumerate(road_map):
         next_city = road_map[(i + 1) % len(road_map)]
         cost = euclidean_distance(city[-2:], next_city[-2:])
-        print('{} to {}: {}'.format(city[0], next_city[0], cost))
+        print('{}, {} to {}, {}: {}'.format(city[1], city[0], next_city[1], next_city[0], cost))
 
     total_distance = compute_total_distance(road_map)
     print('*** TOTAL COST OF CYCLE: {}'.format(total_distance))
