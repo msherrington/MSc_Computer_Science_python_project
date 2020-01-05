@@ -3,8 +3,8 @@
 A Test Driven Development project to consider a simplified version of the travelling salesman problem.
 
 A salesman must visit a distinct list of cities. The order does not matter but he does not want to visit the same city
-twice, and would like his route to be the shortest possible. As this is a simplified version of the problem,
-it is assumed the Earth is flat and Euclidean distances are used.
+twice, and would like his route to be the shortest possible. In this simplified version of the problem 
+it is assumed the Earth is flat, therefore Euclidean distances are used.
 
 ## Requirements
 
