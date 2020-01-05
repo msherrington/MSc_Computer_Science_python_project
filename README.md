@@ -1,14 +1,15 @@
 # Traveling Salesman
 
 A Test Driven Development project to consider a simplified version of the travelling salesman problem.
+
 A salesman must visit a distinct list of cities. The order does not matter but he does not want to visit the same city
 twice, and would like his route to be the shortest possible. As this is a simplified version of the problem,
 it is assumed the Earth is flat and Euclidean distances are used.
 
-##Requirements
+## Requirements
 
 Install matplotlib by running `pip install matplotlib` through the command line,
-or check the ![matplotlib website](https://matplotlib.org/3.1.1/users/installing.html) for other installation options.
+or check [matplotlib.org](https://matplotlib.org/3.1.1/users/installing) for other installation options.
 
 You need a file containing location data. Each line of the file needs to contain city, state, latitude and
 longitude for one location, in a simple text format, separated by whitespaces.
@@ -45,7 +46,7 @@ less space than displaying the city and state for each plot point. If running th
  displayed instantly (ensure scientific mode is enabled). The graph is also saved as `road_map.png` within the project
  directory and opened using the operating system's default png image viewer.
 
-EXAMPLE:
+    EXAMPLE:
 
-![Figure 1, Cities](./road_map.png)
+![](./road_map.png)
 
