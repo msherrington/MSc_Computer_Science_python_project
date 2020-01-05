@@ -1,4 +1,5 @@
-import os.path
+import os
+import subprocess
 
 from matplotlib import pyplot as plt
 from services import (
@@ -192,9 +193,9 @@ def main():
 
 def visualise(road_map):
     """
-    Graphically display the given road_map cycle
-    as a popup display within the IDE and
-    saved as road_map.png file within the project directory
+    Graphically display the given road_map cycle as a popup display within the IDE
+    Image also saved as road_map.png file within the project directory
+    Saved image is opened with the operating system's default image viewer
     :param road_map: List of Quadruples
     """
 
@@ -215,8 +216,14 @@ def visualise(road_map):
     for i in range(len(x)-1):
         plt.annotate(str(i+1), (x[i], y[i]))  # vertex labels
 
-    plt.savefig("road_map.png")
+    image_filename = 'road_map.png'
+    plt.savefig(image_filename)
     plt.show()
+
+    try:
+        os.startfile(image_filename)
+    except AttributeError:
+        subprocess.call(['open', image_filename])
 
 
 if __name__ == "__main__":
